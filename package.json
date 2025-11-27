@@ -5,6 +5,7 @@
   "main": "index.js",
   "homepage": "https://genuimeetshci.github.io/chi26-workshop",
   "scripts": {
+    "dev": "webpack serve --mode development --open",
     "start": "webpack serve --mode development --open",
     "build": "webpack --mode production",
     "predeploy": "npm run build",
