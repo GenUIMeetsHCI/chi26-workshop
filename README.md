@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-The site will open at `http://localhost:3000` with hot reloading enabled.
+The site will open at `http://localhost:3000`
 
 ### Deployment
 
