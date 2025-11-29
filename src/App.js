@@ -1,22 +1,48 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import MainContent from "./components/MainContent";
-import Sidebar from "./components/Sidebar";
+import ContentNavigation from "./components/ContentNavigation";
+import DetailContent from "./components/DetailContent";
 import "./styles/App.css";
 import { ChevronDown } from "lucide-react";
 
 function App() {
-  const [activeSection, setActiveSection] = useState("cfp");
-  const [showChatBubble, setShowChatBubble] = useState(true);
-  const [highlightedOrganizer, setHighlightedOrganizer] = useState(null);
+  const [activeCfpSubsection, setActiveCfpSubsection] = useState(0);
+  const [activeProgramSubsection, setActiveProgramSubsection] = useState(0);
+  const [activeOrganizersSubsection, setActiveOrganizersSubsection] =
+    useState(0);
   const [showNav, setShowNav] = useState(false);
+  const [activeSection, setActiveSection] = useState("cfp");
   const containerRef = useRef(null);
+  const heroRef = useRef(null);
+  const cfpRef = useRef(null);
+  const programRef = useRef(null);
+  const organizersRef = useRef(null);
 
   const handleSectionClick = (section) => {
-    setActiveSection(section);
-    setShowChatBubble(false);
-    setTimeout(() => setShowChatBubble(true), 50);
+    // Scroll to the appropriate section
+    const refs = {
+      home: heroRef,
+      cfp: cfpRef,
+      program: programRef,
+      organizers: organizersRef,
+    };
+
+    refs[section]?.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
+
+  // Reset scroll position to top on mount (page load/refresh)
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = 0;
+    }
+    // Prevent browser scroll restoration
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +50,24 @@ function App() {
         const scrollPosition = containerRef.current.scrollTop;
         const viewportHeight = window.innerHeight;
         setShowNav(scrollPosition > viewportHeight * 0.5);
+
+        // Determine which section is currently in view
+        const heroTop = heroRef.current?.offsetTop || 0;
+        const cfpTop = cfpRef.current?.offsetTop || 0;
+        const programTop = programRef.current?.offsetTop || 0;
+        const organizersTop = organizersRef.current?.offsetTop || 0;
+
+        const scrollWithOffset = scrollPosition + viewportHeight / 2;
+
+        if (scrollWithOffset < cfpTop) {
+          setActiveSection("home");
+        } else if (scrollWithOffset < programTop) {
+          setActiveSection("cfp");
+        } else if (scrollWithOffset < organizersTop) {
+          setActiveSection("program");
+        } else {
+          setActiveSection("organizers");
+        }
       }
     };
 
@@ -44,7 +88,7 @@ function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="hero-page">
+      <section className="hero-page" ref={heroRef}>
         <div className="hero-content-wrapper">
           <h2 className="hero-label">CHI2026 Workshop</h2>
           <h1 className="hero-title">
@@ -67,22 +111,58 @@ function App() {
         </div>
       </section>
 
-      {/* Split Screen Section */}
-      <section className="split-page">
+      {/* CFP Section */}
+      <section className="split-page" ref={cfpRef}>
         <div className="split-container">
           <div className="split-left">
-            <MainContent
-              activeSection={activeSection}
-              showChatBubble={showChatBubble}
-              highlightedOrganizer={highlightedOrganizer}
-              onOrganizerHover={setHighlightedOrganizer}
+            <ContentNavigation
+              activeSection="cfp"
+              activeSubsection={activeCfpSubsection}
+              onSubsectionClick={setActiveCfpSubsection}
             />
           </div>
           <div className="split-right">
-            <Sidebar
-              activeSection={activeSection}
-              highlightedOrganizer={highlightedOrganizer}
-              onOrganizerHover={setHighlightedOrganizer}
+            <DetailContent
+              section="cfp"
+              activeSubsection={activeCfpSubsection}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Program Section */}
+      <section className="split-page" ref={programRef}>
+        <div className="split-container">
+          <div className="split-left">
+            <ContentNavigation
+              activeSection="program"
+              activeSubsection={activeProgramSubsection}
+              onSubsectionClick={setActiveProgramSubsection}
+            />
+          </div>
+          <div className="split-right">
+            <DetailContent
+              section="program"
+              activeSubsection={activeProgramSubsection}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Organizers Section */}
+      <section className="split-page" ref={organizersRef}>
+        <div className="split-container">
+          <div className="split-left">
+            <ContentNavigation
+              activeSection="organizers"
+              activeSubsection={activeOrganizersSubsection}
+              onSubsectionClick={setActiveOrganizersSubsection}
+            />
+          </div>
+          <div className="split-right">
+            <DetailContent
+              section="organizers"
+              activeSubsection={activeOrganizersSubsection}
             />
           </div>
         </div>
@@ -108,6 +188,12 @@ function App() {
       >
         {showNav && (
           <>
+            <button
+              className={`nav-tab ${activeSection === "home" ? "active" : ""}`}
+              onClick={() => handleSectionClick("home")}
+            >
+              Home
+            </button>
             <button
               className={`nav-tab ${activeSection === "cfp" ? "active" : ""}`}
               onClick={() => handleSectionClick("cfp")}

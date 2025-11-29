@@ -18,7 +18,6 @@
 .hero-page {
   min-height: 100vh;
   height: 100vh;
-  background: #f5f5f7;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -40,6 +39,15 @@
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+/* Transparent header for hero page */
+.top-header.transparent {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: none;
 }
 
 .header-title {
@@ -130,11 +138,9 @@
   transform: scale(1.02);
 }
 
-/* Split Screen Section */
+/* Split Screen Section - single scrollable page */
 .split-page {
   min-height: 100vh;
-  height: 100vh;
-  background: #f5f5f7;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -145,7 +151,6 @@
 .split-container {
   flex: 1;
   display: flex;
-  overflow: hidden;
   max-width: 1650px;
   width: 100%;
   margin: 0 auto;
@@ -154,25 +159,25 @@
 
 .split-left {
   flex: 1;
-  overflow-y: auto;
-
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  position: sticky;
+  top: 80px;
+  height: fit-content;
 }
 
 .split-right {
   flex: 3;
-  overflow-y: auto;
-
+  padding-left: 40px;
   border-left: 1px solid #e5e5e7;
 }
 
 /* Bottom Navigation Bar */
 .bottom-nav-bar {
   position: fixed;
-  bottom: 32px;
+  bottom: 12px;
   left: 50%;
   padding: 8px;
   background: linear-gradient(
@@ -180,6 +185,7 @@
     rgba(255, 255, 255, 0.7) 0%,
     rgba(248, 250, 252, 0.5) 100%
   );
+  backdrop-filter: blur(10px);
   height: 50px;
   -webkit-backdrop-filter: blur(20px);
   border-radius: 24px;
