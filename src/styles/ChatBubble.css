@@ -33,7 +33,6 @@
 /* Individual message */
 .message {
   display: flex;
-  animation: messageSlideIn 0.4s ease-out;
 }
 
 @keyframes messageSlideIn {

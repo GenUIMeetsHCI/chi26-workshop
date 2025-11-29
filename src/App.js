@@ -23,7 +23,6 @@ function App() {
       if (containerRef.current) {
         const scrollPosition = containerRef.current.scrollTop;
         const viewportHeight = window.innerHeight;
-        // Show nav when scrolled past 50% of first section
         setShowNav(scrollPosition > viewportHeight * 0.5);
       }
     };

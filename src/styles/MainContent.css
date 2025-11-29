@@ -1,7 +1,11 @@
 .chat-panel {
   height: 100%;
   display: flex;
+  width: 100%;
   flex-direction: column;
+  height: 100%;
+  padding-right: 10px;
+  align-items: center;
 }
 
 .section-labels {

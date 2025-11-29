@@ -155,13 +155,17 @@
 .split-left {
   flex: 1;
   overflow-y: auto;
-  padding-right: 40px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .split-right {
   flex: 3;
   overflow-y: auto;
-  padding-left: 40px;
+
   border-left: 1px solid #e5e5e7;
 }
 

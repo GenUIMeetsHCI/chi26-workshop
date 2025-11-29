@@ -67,10 +67,10 @@ function SidebarContent({ section, highlightedOrganizer, onOrganizerHover }) {
   return (
     <div className="sidebar-content">
       {/* Summary section */}
-      {/* <div className="sidebar-summary">
+      <div className="sidebar-summary">
         <h2 className="sidebar-title">{data.title}</h2>
         <p className="sidebar-summary-text">{data.summary}</p>
-      </div> */}
+      </div>
 
       {/* Sections */}
       {data.sections?.map((sec, idx) => (

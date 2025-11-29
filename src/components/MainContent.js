@@ -1,4 +1,5 @@
 import React from "react";
+import ChatBubble from "./ChatBubble";
 import { sectionData } from "../data/sectionData";
 import "../styles/MainContent.css";
 
@@ -21,23 +22,17 @@ function MainContent({
 
   return (
     <div className="chat-panel">
-      <div className="main-content-summary">
-        <h2 className="main-content-title">
-          {sectionData[activeSection].sidebar.title}
-        </h2>
-        <p className="main-content-summary-text">
-          {sectionData[activeSection].sidebar.summary}
-        </p>
+      <div className="section-title">
+        {sectionData[activeSection].sidebar.title}
       </div>
-
-      {/* {showChatBubble && (
+      {showChatBubble && (
         <ChatBubble
           section={activeSection}
           highlightedOrganizer={highlightedOrganizer}
           onOrganizerHover={onOrganizerHover}
           organizers={organizers}
         />
-      )} */}
+      )}
     </div>
   );
 }

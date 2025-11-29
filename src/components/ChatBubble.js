@@ -33,7 +33,7 @@ function ChatBubble({
     setVisibleMessages([]);
 
     // Show messages progressively with delays
-    let currentDelay = 200;
+    let currentDelay = 0;
     const timers = [];
 
     chats.forEach((chat, chatIndex) => {
@@ -45,7 +45,7 @@ function ChatBubble({
         ]);
       }, currentDelay);
       timers.push(questionTimer);
-      currentDelay += 400;
+      currentDelay += 0;
 
       // Show answer
       const answerTimer = setTimeout(() => {
@@ -55,7 +55,7 @@ function ChatBubble({
         ]);
       }, currentDelay);
       timers.push(answerTimer);
-      currentDelay += 600;
+      currentDelay += 0;
     });
 
     return () => {
@@ -65,6 +65,7 @@ function ChatBubble({
 
   // Render the answer content based on section
   const renderAnswer = (content, chatIndex) => {
+    return null;
     if (section === "organizers" && organizers && chatIndex === 0) {
       return (
         <p>
@@ -108,11 +109,9 @@ function ChatBubble({
                 : "answer-message"
             }`}
           >
-            <div className="message-bubble">
-              {message.type === "question"
-                ? message.content
-                : renderAnswer(message.content, message.chatIndex)}
-            </div>
+            {message.type === "question" && (
+              <div className="message-bubble">{message.content}</div>
+            )}
           </div>
         ))}
       </div>
