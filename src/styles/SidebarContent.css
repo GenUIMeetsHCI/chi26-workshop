@@ -1,0 +1,154 @@
+.sidebar-content {
+  height: 100%;
+  overflow-y: auto;
+  padding: 32px;
+}
+
+/* Summary Section */
+.sidebar-summary {
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 2px solid #e5e5e7;
+}
+
+.sidebar-title {
+  font-family: "Barlow", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.5px;
+}
+
+.sidebar-summary-text {
+  font-family: "Barlow", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+/* Sections */
+.sidebar-section {
+  margin-bottom: 40px;
+}
+
+.sidebar-section-heading {
+  font-family: "Barlow", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.3px;
+}
+
+.sidebar-text {
+  font-family: "Barlow", sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #1d1d1f;
+  margin: 0 0 16px 0;
+  white-space: pre-line;
+}
+
+.sidebar-text:last-child {
+  margin-bottom: 0;
+}
+
+.sidebar-text strong {
+  font-weight: 700;
+  color: #0066cc;
+}
+
+/* Lists */
+.sidebar-list {
+  font-family: "Barlow", sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #1d1d1f;
+  margin: 0 0 16px 0;
+  padding-left: 24px;
+}
+
+.sidebar-list:last-child {
+  margin-bottom: 0;
+}
+
+.sidebar-list li {
+  margin-bottom: 10px;
+  padding-left: 8px;
+}
+
+.sidebar-list li:last-child {
+  margin-bottom: 0;
+}
+
+.sidebar-list li strong {
+  font-weight: 700;
+  color: #0066cc;
+}
+
+/* Organizer Cards */
+.organizer-card {
+  background: #f5f5f7;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+  border-left: 3px solid #0066cc;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.organizer-card:last-child {
+  margin-bottom: 0;
+}
+
+.organizer-card:hover,
+.organizer-card.highlighted {
+  background: #e8e8ed;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.organizer-name {
+  font-family: "Barlow", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin: 0 0 4px 0;
+}
+
+.organizer-affiliation {
+  font-family: "Barlow", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0066cc;
+  margin: 0 0 12px 0;
+}
+
+.organizer-bio {
+  font-family: "Barlow", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6e6e73;
+  margin: 0;
+}
+
+/* Scrollbar styling */
+.sidebar-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+  background: #d2d2d7;
+  border-radius: 4px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+  background: #b8b8bd;
+}
+
