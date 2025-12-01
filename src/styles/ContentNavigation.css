@@ -1,0 +1,96 @@
+/* Left navigation panel - aligns content to the right */
+.content-nav-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 100%;
+  width: 100%;
+  padding: 2rem 2rem;
+  background: transparent;
+}
+
+.content-nav-title {
+  font-family: "Barlow", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-align: right;
+}
+
+.content-nav-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  width: 100%;
+}
+
+/* Navigation items styled as question bubbles when active */
+.nav-item {
+  all: unset;
+  cursor: pointer;
+  padding: 8px 16px;
+  font-family: "Barlow", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #6e6e73;
+  text-align: right;
+  border-radius: 20px;
+  background-color: transparent;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  position: relative;
+  max-width: 90%;
+  border-radius: 20px 20px 4px 20px;
+}
+
+.nav-item:hover {
+  background-color: #9494941e;
+}
+
+/* Question bubble style - dark gradient with characteristic chat shape */
+.nav-item.active {
+  background: linear-gradient(135deg, #444444 0%, #343434 100%);
+  color: white;
+  font-weight: 500;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-radius: 20px 20px 4px 20px;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .content-nav-panel {
+    padding: 2rem 1.5rem;
+  }
+
+  .content-nav-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .nav-item {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-nav-panel {
+    padding: 1.5rem 1rem;
+  }
+
+  .content-nav-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .nav-item {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.85rem;
+  }
+}
