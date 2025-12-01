@@ -81,7 +81,7 @@ function App() {
   return (
     <div className="app-container" ref={containerRef}>
       {/* Global Fixed Header */}
-      <header className="top-header">
+      <header className={`top-header ${!showNav ? "transparent" : ""}`}>
         <span className="header-title">CHI2026 Workshop</span>
         <span className="header-divider"></span>
         <span className="header-subtitle">Generative UI</span>
@@ -94,19 +94,24 @@ function App() {
           <h1 className="hero-title">
             What does Generative UI mean for HCI Practice?
           </h1>
-
-          <p className="hero-date">time TBD, 2026</p>
-
-          <p className="hero-text">
-            As AI models become capable of generating user interfaces in
-            real-time, we face a transformative moment for HCI. This workshop
-            explores how generative UI will reshape design methods, workflows,
-            and user experiences—and how our practice must evolve to meet these
-            challenges. Join researchers, designers, and practitioners for an
-            interactive workshop featuring ideation exercises, panel
-            discussions, and collaborative artifact development.
+          <p className="hero-caption">
+            Creant el demà junts • Barcelona, April 2026
           </p>
-
+          <p className="hero-text">
+            The increasing capability of AI models to generate user interfaces
+            has the potential to transform HCI and design practice. We invite
+            researchers, designers, and practitioners to explore how generative
+            UI—interfaces created by AI models—will reshape design methods,
+            workflows, and user experiences.
+            <br />
+            <br />
+            This will be an interactive and discussion-oriented workshop,
+            featuring a pop-up panel, creative ideation exercises, and
+            collaborative artefact development. We will welcome submissions from
+            scholars and practitioners working on dynamic or generative UI, as
+            well as those with expertise in related areas to join the
+            conversation.
+          </p>
           <button className="hero-cta-button">Submission Form</button>
         </div>
       </section>
