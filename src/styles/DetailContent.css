@@ -11,6 +11,17 @@
   max-width: 900px;
 }
 
+.detail-section-title {
+  font-family: "Barlow", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  padding: 0 0.6rem;
+  display: none;
+}
+
 /* Summary section - shows answer bubble when highlighted */
 .detail-summary {
   margin-bottom: 1.5rem;
@@ -275,6 +286,7 @@
   margin-bottom: 2rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 20px;
+  margin-top: 3rem;
 }
 
 .organizer-bubble:hover,
@@ -370,8 +382,8 @@
   box-shadow: 0 4px 16px rgba(59, 130, 246, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.8),
     inset 0 0 20px rgba(147, 197, 253, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  max-width: 430px;
+
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -451,6 +463,10 @@
     padding: 2rem 2rem 4rem;
   }
 
+  .detail-section-title {
+    display: block;
+  }
+
   .detail-title {
     font-size: 1.875rem;
   }
@@ -485,16 +501,26 @@
 
 @media (max-width: 768px) {
   .detail-content {
-    padding: 1.5rem 1.5rem 3rem;
+    padding: 1rem 0 3rem;
   }
 
   .detail-summary,
   .detail-section {
     padding: 1rem;
+    scroll-margin-top: 80px;
   }
 
   .detail-title {
     font-size: 1.5rem;
+  }
+
+  .detail-h1 {
+    font-size: 1.5rem;
+  }
+
+  .detail-h2 {
+    font-size: 1.25rem;
+    margin: 1.25rem 0 0.75rem 0;
   }
 
   .detail-section-heading {
@@ -504,7 +530,19 @@
   .detail-summary-text,
   .detail-text,
   .detail-list li {
-    font-size: 0.9rem;
+    font-size: 15px;
+  }
+
+  .timeline-title {
+    font-size: 16px;
+  }
+
+  .timeline-description {
+    font-size: 15px;
+  }
+
+  .timeline-details li {
+    font-size: 14px;
   }
 
   .organizer-card {
@@ -547,5 +585,44 @@
 
   .research-focus-text {
     font-size: 13px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .detail-content {
+    padding: 0.75rem 0 2.5rem;
+  }
+
+  .detail-summary,
+  .detail-section {
+    padding: 0.875rem;
+  }
+
+  .detail-title {
+    font-size: 1.375rem;
+  }
+
+  .detail-h1 {
+    font-size: 1.375rem;
+  }
+
+  .detail-h2 {
+    font-size: 1.125rem;
+  }
+
+  .detail-summary-text,
+  .detail-text,
+  .detail-list li {
+    font-size: 14px;
+  }
+
+  .organizer-bubble {
+    padding: 1rem;
+  }
+
+  .organizer-image {
+    width: 80px;
+    height: 80px;
   }
 }

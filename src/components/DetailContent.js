@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { sectionData } from "../data/sectionData";
+import { getAssetPath } from "../config";
 import "../styles/DetailContent.css";
 
 /**
@@ -144,7 +145,7 @@ function DetailContent({ section, activeSubsection, scrollContainerRef }) {
               <div className="organizer-left">
                 <div className="organizer-image">
                   {item.image ? (
-                    <img src={item.image} alt={item.name} />
+                    <img src={getAssetPath(item.image)} alt={item.name} />
                   ) : (
                     <div className="organizer-avatar-placeholder">
                       {item.name
@@ -176,6 +177,7 @@ function DetailContent({ section, activeSubsection, scrollContainerRef }) {
     <div className="detail-content-panel">
       <div className="detail-content">
         {/* Subsections with answer bubble highlighting */}
+        <div className="detail-section-title">{data.title}</div>
         {data.sections?.map((sec, idx) => (
           <div
             key={idx}

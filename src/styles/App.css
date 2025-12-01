@@ -279,27 +279,84 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  /* Hide left navigation on mobile for long scrolling page */
+  .split-left {
+    display: none;
+  }
+
+  .split-right {
+    border-left: none;
+    padding-left: 0;
+  }
+
   .hero-title {
-    font-size: 40px;
+    font-size: 32px;
+  }
+
+  .hero-label {
+    font-size: 18px;
+  }
+
+  .hero-caption {
+    font-size: 16px;
+  }
+
+  .hero-text {
+    font-size: 16px;
   }
 
   .hero-content-wrapper {
-    padding: 60px 24px 100px;
+    padding: 60px 24px 80px;
   }
 
   .split-container {
-    padding: 40px 24px 100px;
+    padding: 40px 24px 60px;
   }
 
   .bottom-nav-bar {
     padding: 6px;
-    gap: 6px;
-    bottom: 20px;
+    gap: 4px;
+    bottom: 12px;
+    max-width: calc(100vw - 32px);
   }
 
   .nav-tab {
-    font-size: 11px;
-    padding: 8px 14px;
+    font-size: 10px;
+    padding: 8px 12px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .hero-content-wrapper {
+    padding: 50px 20px 60px;
+  }
+
+  .split-container {
+    padding: 32px 20px 50px;
+  }
+
+  .top-header {
+    padding: 12px 20px;
+  }
+
+  .header-title,
+  .header-subtitle {
+    font-size: 13px;
+  }
+
+  .bottom-nav-bar {
+    bottom: 8px;
+    max-width: calc(100vw - 24px);
+  }
+
+  .nav-tab {
+    font-size: 9px;
+    padding: 8px 10px;
   }
 }

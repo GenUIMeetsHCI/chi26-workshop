@@ -203,51 +203,47 @@ export const sectionData = {
           heading: "Who are we?",
           content: [
             {
-              type: "h1",
-              text: "Organizers",
-            },
-            {
               type: "text",
               text: "We are a multidisciplinary team from industry and academia, with deep expertise including dynamic and generative UI, HCI and design practice, and the inclusion of AI capabilities in software. ",
             },
             {
               type: "organizer",
               name: "Siân Lindley",
-              title: "Microsoft Research Cambridge",
-              image: null, // Placeholder for image
+              title: "Microsoft Research",
+              image: "organizers/sian.png",
               researchFocus:
-                "Co-leads the People-Centric AI Research Area, focusing on principles and insights for human–AI interaction as models gain more flexibility and control over content and interfaces. Her work emphasizes situated interactions and collaborative work.",
+                "Co-leads the People-Centric AI Research Area at MSR Cambridge, focusing on principles and insights for human–AI interaction as models gain more flexibility and control over content and interfaces. Her work emphasizes situated interactions and collaborative work.",
             },
             {
               type: "organizer",
               name: "Jack Williams",
-              title: "Microsoft Research Cambridge",
-              image: null,
+              title: "Microsoft Research",
+              image: "organizers/jack.png",
               researchFocus:
-                "Principal Researcher working at the intersection of programming languages, HCI, and AI. His research develops techniques that make computation more accessible and understandable, including AI-driven tools for UI and end-user programming.",
+                "Principal Researcher at MSR Cambridge, working at the intersection of programming languages, HCI, and AI. His research develops techniques that make computation more accessible and understandable, including AI-driven tools for UI and end-user programming.",
             },
             {
               type: "organizer",
-              name: "Yining (Rima) Cao",
+              name: "Yining 'Rima' Cao",
               title: "University of California, San Diego",
-              image: null,
+              image: "organizers/yining.png",
               researchFocus:
-                "Ph.D. student in the Foundation Interface Lab. Her research explores how computational structures can be generated, composed, and synchronized to support complex information activities, and how generative, malleable interfaces can evolve with users' dynamic and personal needs.",
+                "Ph.D. student in the Foundation Interface Lab at UCSD. Her research explores how computational structures can be generated, composed, and synchronized to support complex information activities, and how generative, malleable interfaces can evolve with users' dynamic and personal needs.",
             },
             {
               type: "organizer",
               name: "Haijun Xia",
               title: "University of California, San Diego",
-              image: null,
+              image: "organizers/haijun.png",
               researchFocus:
-                "Assistant Professor and director of the Foundation Interface Lab. His research develops foundational elements of human–computer interfaces that treat information and interfaces as malleable materials, enabling convivial human–AI collaboration and personal, generative interfaces.",
+                "Assistant Professor and director of the Foundation Interface Lab at UCSD. His research develops foundational elements of human–computer interfaces that treat information and interfaces as malleable materials, enabling convivial human–AI collaboration and personal, generative interfaces.",
             },
             {
               type: "organizer",
               name: "Elizabeth F. Churchill",
               title:
                 "Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)",
-              image: null,
+              image: "organizers/elizabeth.png",
               researchFocus:
                 "Professor and founding Department Chair of HCI at MBZUAI, with a long track record of leadership roles in industry (Google, Yahoo, eBay). Her research focuses on human-centered AI systems and the design of interactive technologies.",
             },
@@ -255,25 +251,25 @@ export const sectionData = {
               type: "organizer",
               name: "Abigail Sellen",
               title: "Microsoft Research",
-              image: null,
+              image: "organizers/abigail.png",
               researchFocus:
-                "Long-time HCI researcher and former Lab Director at Microsoft Research Cambridge. Her current work focuses on societal challenges posed by AI. She brings deep experience from the early days of HCI to today's generative AI shift.",
+                "Long-time HCI researcher and former Lab Director at MSR Cambridge. Her current work focuses on societal challenges posed by AI. She brings deep experience from the early days of HCI to today's generative AI shift.",
             },
             {
               type: "organizer",
               name: "Jeffrey Nichols",
               title: "Apple",
-              image: null,
+              image: "organizers/jeff.png",
               researchFocus:
-                "Research Scientist in the AI/ML group working on intelligent user interfaces. His early doctoral work on automatically generating user interfaces for appliances anticipated many contemporary questions around genUI.",
+                "Research Scientist in the AI/ML group at Apple working on intelligent user interfaces. His early doctoral work on automatically generating user interfaces for appliances anticipated many contemporary questions around genUI.",
             },
             {
               type: "organizer",
               name: "David Karger",
               title: "MIT CSAIL",
-              image: null,
+              image: "organizers/david.png",
               researchFocus:
-                'Professor whose research focuses on tools to help people manage information better, combining HCI, IR, machine learning, databases, and algorithms. He brings a long history of deploying and studying tools "in the wild" to understand real-world use.',
+                'Professor at MIT CSAIL whose research focuses on tools to help people manage information better, combining HCI, IR, machine learning, databases, and algorithms. He brings a long history of deploying and studying tools "in the wild" to understand real-world use.',
             },
           ],
         },
