@@ -130,6 +130,7 @@ function App() {
             <DetailContent
               section="cfp"
               activeSubsection={activeCfpSubsection}
+              scrollContainerRef={containerRef}
             />
           </div>
         </div>
@@ -149,6 +150,7 @@ function App() {
             <DetailContent
               section="program"
               activeSubsection={activeProgramSubsection}
+              scrollContainerRef={containerRef}
             />
           </div>
         </div>
@@ -168,6 +170,7 @@ function App() {
             <DetailContent
               section="organizers"
               activeSubsection={activeOrganizersSubsection}
+              scrollContainerRef={containerRef}
             />
           </div>
         </div>

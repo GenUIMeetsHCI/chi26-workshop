@@ -4,13 +4,6 @@ A workshop webpage for the CHI2026 conference on Generative UI.
 
 Visit the webpage: [https://genuimeetshci.github.io/chi26-workshop/](https://genuimeetshci.github.io/chi26-workshop/)
 
-### Design Concept
-
-Resemble the genUI chat interface:
-
-- a brief answer with an expanded panel for details: UI over the detailed content
-- the message and UI would support synced highlighting
-
 ---
 
 ### Development
@@ -23,6 +16,10 @@ npm run dev
 ```
 
 The site will open at `http://localhost:3000`
+
+### Content Editing
+
+section content are specified with JSON in `data/sectionData.js`
 
 ### Deployment
 

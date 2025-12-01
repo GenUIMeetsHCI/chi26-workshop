@@ -6,19 +6,47 @@ import "../styles/DetailContent.css";
  * Right content panel displaying detailed section information
  * Shows as "answer bubbles" when subsections are highlighted
  */
-function DetailContent({ section, activeSubsection }) {
+function DetailContent({ section, activeSubsection, scrollContainerRef }) {
   const data = sectionData[section]?.sidebar || sectionData.cfp.sidebar;
   const subsectionRefs = useRef([]);
+  const prevActiveSubsection = useRef(activeSubsection);
+  const isFirstRender = useRef(true);
 
-  // Scroll to focused subsection when clicked
+  // Scroll to focused subsection when clicked - centers it in the viewport
   useEffect(() => {
-    if (activeSubsection !== null && subsectionRefs.current[activeSubsection]) {
-      subsectionRefs.current[activeSubsection].scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+    // Skip scroll on first render
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      prevActiveSubsection.current = activeSubsection;
+      return;
     }
-  }, [activeSubsection]);
+
+    // Only scroll if subsection actually changed
+    if (
+      activeSubsection !== null &&
+      activeSubsection !== prevActiveSubsection.current &&
+      subsectionRefs.current[activeSubsection]
+    ) {
+      const subsectionElement = subsectionRefs.current[activeSubsection];
+      const scrollContainer = scrollContainerRef?.current;
+
+      if (subsectionElement && scrollContainer) {
+        // Small delay to ensure DOM is updated and smooth scroll works
+        setTimeout(() => {
+          // Use scrollIntoView with center alignment
+          // This will scroll the element to the center of its scrollable ancestor
+          subsectionElement.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+            inline: "nearest",
+          });
+        }, 50);
+      }
+    }
+
+    // Update the previous value
+    prevActiveSubsection.current = activeSubsection;
+  }, [activeSubsection, scrollContainerRef, section]);
 
   const renderContent = (contentArray) => {
     if (!contentArray) return null;
@@ -156,7 +184,7 @@ function DetailContent({ section, activeSubsection }) {
                 ? "highlighted"
                 : ""
             }`}
-            ref={(el) => (subsectionRefs.current[idx + 1] = el)}
+            ref={(el) => (subsectionRefs.current[idx] = el)}
           >
             {renderContent(sec.content)}
           </div>
