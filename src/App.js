@@ -79,7 +79,12 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container" ref={containerRef}>
+    <div
+      className={`app-container ${
+        activeSection === "home" ? "hero-page-container" : ""
+      }`}
+      ref={containerRef}
+    >
       {/* Global Fixed Header */}
       <header className={`top-header ${!showNav ? "transparent" : ""}`}>
         <span className="header-title">CHI2026 Workshop</span>
@@ -184,12 +189,12 @@ function App() {
       <motion.nav
         className="bottom-nav-bar"
         initial={{
-          scale: 0.5,
-          opacity: 0.8,
+          scale: 0.75,
+          opacity: 1,
           x: "-50%",
         }}
         animate={{
-          scale: showNav ? 1 : 0.5,
+          scale: showNav ? 1 : 0.75,
           opacity: showNav ? 1 : 0.8,
         }}
         transition={{
