@@ -303,7 +303,8 @@
   }
 
   .hero-text {
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 1.5;
   }
 
   .hero-content-wrapper {
@@ -324,6 +325,12 @@
   .nav-tab {
     font-size: 10px;
     padding: 8px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-cta-button {
+    display: none;
   }
 }
 
