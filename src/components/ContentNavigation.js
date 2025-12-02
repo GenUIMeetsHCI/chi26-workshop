@@ -28,13 +28,13 @@ function ContentNavigation({
       {/* Subsection navigation menu */}
       <nav className="content-nav-menu">
         {data.sections?.map((section, idx) => (
-          <button
+          <div
             key={idx}
             className={`nav-item ${activeSubsection === idx ? "active" : ""}`}
             onClick={() => onSubsectionClick(idx)}
           >
             {section.heading}
-          </button>
+          </div>
         ))}
       </nav>
     </div>

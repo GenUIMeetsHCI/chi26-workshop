@@ -253,7 +253,7 @@ export const sectionData = {
               title: "Microsoft Research",
               image: "organizers/abigail.png",
               researchFocus:
-                "Long-time HCI researcher and former Lab Director at MSR Cambridge. Her current work focuses on societal challenges posed by AI. She brings deep experience from the early days of HCI to today's generative AI shift.",
+                "Lab Director of MSR Cambridge, focusing on some of the most important challenges AI is creating for society. She has been involved in the field of HCI since its inception, and sees generative AI as one of the most disruptive changes to both the theory and practice of HCI.",
             },
             {
               type: "organizer",

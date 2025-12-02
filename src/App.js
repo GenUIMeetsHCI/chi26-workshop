@@ -112,7 +112,11 @@ function App() {
             well as those with expertise in related areas to join the
             conversation.
           </p>
-          <button className="hero-cta-button">Submission Form</button>
+          {/* <button className="hero-cta-button">Submission Form</button> */}
+
+          <div className="hero-cta-button">
+            <a>Submission Form</a>
+          </div>
         </div>
       </section>
 
@@ -196,34 +200,34 @@ function App() {
       >
         {showNav && (
           <>
-            <button
+            <div
               className={`nav-tab ${activeSection === "home" ? "active" : ""}`}
               onClick={() => handleSectionClick("home")}
             >
               Home
-            </button>
-            <button
+            </div>
+            <div
               className={`nav-tab ${activeSection === "cfp" ? "active" : ""}`}
               onClick={() => handleSectionClick("cfp")}
             >
               Call for Participation
-            </button>
-            <button
+            </div>
+            <div
               className={`nav-tab ${
                 activeSection === "program" ? "active" : ""
               }`}
               onClick={() => handleSectionClick("program")}
             >
               Program
-            </button>
-            <button
+            </div>
+            <div
               className={`nav-tab ${
                 activeSection === "organizers" ? "active" : ""
               }`}
               onClick={() => handleSectionClick("organizers")}
             >
               Organizers
-            </button>
+            </div>
           </>
         )}
         {!showNav && <ChevronDown className="down-arrow-icon" size={24} />}
