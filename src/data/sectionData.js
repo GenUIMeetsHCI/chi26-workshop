@@ -219,6 +219,8 @@ export const sectionData = {
               name: "Siân Lindley",
               title: "Microsoft Research",
               image: "organizers/sian.png",
+              website: "https://www.microsoft.com/en-us/research/people/sianl/",
+              email: "sianl@microsoft.com",
               researchFocus:
                 "Co-leads the People-Centric AI Research Area at MSR Cambridge, focusing on principles and insights for human–AI interaction as models gain more flexibility and control over content and interfaces. Her work emphasizes situated interactions and collaborative work.",
             },
@@ -227,6 +229,9 @@ export const sectionData = {
               name: "Jack Williams",
               title: "Microsoft Research",
               image: "organizers/jack.png",
+              website:
+                "https://www.microsoft.com/en-us/research/people/johnwilliams/",
+              email: "jack.williams@microsoft.com",
               researchFocus:
                 "Principal Researcher at MSR Cambridge, working at the intersection of programming languages, HCI, and AI. His research develops techniques that make computation more accessible and understandable, including AI-driven tools for UI and end-user programming.",
             },
@@ -235,6 +240,8 @@ export const sectionData = {
               name: "Yining 'Rima' Cao",
               title: "University of California, San Diego",
               image: "organizers/yining.png",
+              website: "https://rrrima.me",
+              email: "yic069@ucsd.edu",
               researchFocus:
                 "Ph.D. student in the Foundation Interface Lab at UCSD. Her research explores how computational structures can be generated, composed, and synchronized to support complex information activities, and how generative, malleable interfaces can evolve with users' dynamic and personal needs.",
             },
@@ -243,6 +250,8 @@ export const sectionData = {
               name: "Haijun Xia",
               title: "University of California, San Diego",
               image: "organizers/haijun.png",
+              website: "https://hci.ucsd.edu/",
+              email: "haijunxia@ucsd.edu",
               researchFocus:
                 "Assistant Professor and director of the Foundation Interface Lab at UCSD. His research develops foundational elements of human–computer interfaces that treat information and interfaces as malleable materials, enabling convivial human–AI collaboration and personal, generative interfaces.",
             },
@@ -252,6 +261,8 @@ export const sectionData = {
               title:
                 "Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)",
               image: "organizers/elizabeth.png",
+              website: "https://elizabethchurchill.com/",
+              email: "churchill@acm.org",
               researchFocus:
                 "Professor and founding Department Chair of HCI at MBZUAI, with a long track record of leadership roles in industry (Google, Yahoo, eBay). Her research focuses on human-centered AI systems and the design of interactive technologies.",
             },
@@ -260,6 +271,9 @@ export const sectionData = {
               name: "Abigail Sellen",
               title: "Microsoft Research",
               image: "organizers/abigail.png",
+              website:
+                "https://www.microsoft.com/en-us/research/people/asellen/",
+              email: "asellen@microsoft.com",
               researchFocus:
                 "Lab Director of MSR Cambridge, focusing on some of the most important challenges AI is creating for society. She has been involved in the field of HCI since its inception, and sees generative AI as one of the most disruptive changes to both the theory and practice of HCI.",
             },
@@ -268,6 +282,8 @@ export const sectionData = {
               name: "Jeffrey Nichols",
               title: "Apple",
               image: "organizers/jeff.png",
+              website: "http://www.jeffreynichols.com/",
+              email: "jeff@jeffreynichols.com",
               researchFocus:
                 "Research Scientist in the AI/ML group at Apple working on intelligent user interfaces. His early doctoral work on automatically generating user interfaces for appliances anticipated many contemporary questions around genUI.",
             },
@@ -276,6 +292,8 @@ export const sectionData = {
               name: "David Karger",
               title: "MIT CSAIL",
               image: "organizers/david.png",
+              website: "https://people.csail.mit.edu/karger/",
+              email: "karger@mit.edu",
               researchFocus:
                 'Professor at MIT CSAIL whose research focuses on tools to help people manage information better, combining HCI, IR, machine learning, databases, and algorithms. He brings a long history of deploying and studying tools "in the wild" to understand real-world use.',
             },

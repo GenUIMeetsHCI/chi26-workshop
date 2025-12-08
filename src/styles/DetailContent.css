@@ -363,6 +363,79 @@
   max-width: 200px;
 }
 
+/* Organizer links - borderless icons */
+.organizer-links {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.3rem;
+  opacity: 0;
+}
+
+.organizer-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 3px;
+  color: #6e6e73;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.organizer-link-btn:hover {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.organizer-link-btn:active {
+  transform: scale(0.95);
+}
+
+/* Copied tooltip */
+.copied-tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1d1d1f;
+  color: #ffffff;
+  font-family: "Barlow", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: tooltipFadeIn 0.2s ease;
+}
+
+.copied-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: #1d1d1f transparent transparent transparent;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
 /* Right side: research focus bubble */
 .organizer-right {
   flex: 1;
@@ -377,7 +450,7 @@
     rgba(240, 248, 255, 0.95) 100%
   );
   border: 1px solid rgba(147, 197, 253, 0.3);
-  border-radius: 20px 20px 20px 4px;
+  border-radius: 20px 20px 20px 20px;
   padding: 1.25rem 1.5rem;
   box-shadow: 0 4px 16px rgba(59, 130, 246, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.8),
@@ -387,11 +460,16 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.organizer-bubble:hover .research-focus-bubble,
-.organizer-bubble.highlighted .research-focus-bubble {
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 0 20px rgba(147, 197, 253, 0.08);
+.organizer-bubble:hover {
+  .organizer-links {
+    opacity: 1;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+.organier-info:hover .research-focus-bubble,
+.organier-info.highlighted .research-focus-bubble {
+  opacity: 1;
 }
 
 .research-focus-text {

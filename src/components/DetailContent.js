@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { sectionData } from "../data/sectionData";
 import { getAssetPath } from "../config";
+import { Globe, Mail } from "lucide-react";
 import "../styles/DetailContent.css";
 
 /**
@@ -12,6 +13,14 @@ function DetailContent({ section, activeSubsection, scrollContainerRef }) {
   const subsectionRefs = useRef([]);
   const prevActiveSubsection = useRef(activeSubsection);
   const isFirstRender = useRef(true);
+  const [copiedEmail, setCopiedEmail] = useState(null);
+
+  const handleCopyEmail = (email, organizerName) => {
+    navigator.clipboard.writeText(email).then(() => {
+      setCopiedEmail(organizerName);
+      setTimeout(() => setCopiedEmail(null), 2000);
+    });
+  };
 
   // Scroll to focused subsection when clicked - centers it in the viewport
   useEffect(() => {
@@ -158,6 +167,33 @@ function DetailContent({ section, activeSubsection, scrollContainerRef }) {
                 <div className="organizer-info">
                   <h4 className="organizer-name">{item.name}</h4>
                   <p className="organizer-title">{item.title}</p>
+                  {(item.website || item.email) && (
+                    <div className="organizer-links">
+                      {item.website && (
+                        <a
+                          href={item.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="organizer-link-btn"
+                          title="Visit website"
+                        >
+                          <Globe size={13} />
+                        </a>
+                      )}
+                      {item.email && (
+                        <button
+                          className="organizer-link-btn"
+                          onClick={() => handleCopyEmail(item.email, item.name)}
+                          title="Copy email"
+                        >
+                          <Mail size={13} />
+                          {copiedEmail === item.name && (
+                            <span className="copied-tooltip">Copied!</span>
+                          )}
+                        </button>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="organizer-right">
