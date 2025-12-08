@@ -35,7 +35,7 @@ export const sectionData = {
             },
             {
               type: "text",
-              text: "welcome submissions from scholars and practitioners working on dynamic or generative UI, as well as those with expertise in related areas. ",
+              text: "We welcome submissions from scholars and practitioners working on dynamic or generative UI, as well as those with expertise in related areas. ",
             },
             {
               type: "h2",
@@ -54,10 +54,18 @@ export const sectionData = {
               text: "Your submission should outline how you think genUI will enable new human-centric experiences, and how HCI and design practice will need to change to support this. Submissions must follow SIGCHI's Accessibility Guide for Authors.",
             },
             {
+              type: "h2",
+              text: "Submission deadline:",
+            },
+            {
+              type: "text",
+              text: "Thursday, February 12, 2026 (AOE)",
+            },
+            {
               type: "button",
               text: "Submission Form",
-              url: "#",
-              newTab: false,
+              url: "https://forms.office.com/r/F84grr6bV1",
+              newTab: true,
             },
           ],
         },

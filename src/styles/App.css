@@ -140,6 +140,11 @@
   transform: scale(1.02);
 }
 
+.hero-cta-button a {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* Split Screen Section - single scrollable page */
 .split-page {
   min-height: 100vh;

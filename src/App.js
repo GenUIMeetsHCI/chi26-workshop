@@ -89,7 +89,7 @@ function App() {
       <header className={`top-header ${!showNav ? "transparent" : ""}`}>
         <span className="header-title">CHI2026 Workshop</span>
         <span className="header-divider"></span>
-        <span className="header-subtitle">Generative UI</span>
+        <span className="header-subtitle">Generative UI for HCI Practice</span>
       </header>
 
       {/* Hero Section */}
@@ -120,7 +120,13 @@ function App() {
           {/* <button className="hero-cta-button">Submission Form</button> */}
 
           <div className="hero-cta-button">
-            <a>Submission Form</a>
+            <a
+              href="https://forms.office.com/r/F84grr6bV1"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Submission Form
+            </a>
           </div>
         </div>
       </section>
