@@ -349,9 +349,14 @@
 }
 
 @media (max-width: 768px) {
-  .hero-cta-button,
-  .hero-secondary-link {
+  .hero-cta-button {
     display: none;
+  }
+  .hero-secondary-link {
+    margin-top: 0;
+  }
+  .hero-text {
+    margin-bottom: 12px;
   }
 }
 
