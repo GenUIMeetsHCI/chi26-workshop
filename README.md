@@ -30,9 +30,3 @@ npm run deploy
 ```
 
 This automatically builds and publishes to the `gh-pages` branch.
-
----
-
-### Links
-
-- [Planning Doc](https://docs.google.com/document/d/1veSdkckKuTcimdgITUrBkjj2dmYZblKKdlpWWhV1-8A/edit?usp=sharing)
