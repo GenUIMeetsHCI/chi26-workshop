@@ -3,7 +3,7 @@ export const sectionData = {
   cfp: {
     sidebar: {
       title: "Call for Participation",
-      summary: `We invite researchers, designers, and practitioners to explore how generative UI—interfaces created by AI models—will reshape design methods, workflows, and user experiences. 
+      summary: `We invite researchers, designers, developers, and practitioners to explore how generative UI—interfaces created by AI models—will reshape design methods, workflows, and user experiences. 
       `,
       sections: [
         {
@@ -27,7 +27,7 @@ export const sectionData = {
           ],
         },
         {
-          heading: "How can I participate in?",
+          heading: "How can I participate?",
           content: [
             {
               type: "h1",
@@ -44,7 +44,7 @@ export const sectionData = {
             {
               type: "list",
               items: [
-                "A two-page position paper (ACM single column format)",
+                "A two-page position paper (ACM single column format, page limit does not include references)",
                 "A two-page pictorial",
                 "A two-minute video",
               ],
@@ -74,11 +74,11 @@ export const sectionData = {
           content: [
             {
               type: "text",
-              text: "Submissions will be lightly peer-reviewed by the organizing committee. We will evaluate by its relevance and novelty.",
+              text: "Submissions will be lightly peer-reviewed by the organizing committee. We will evaluate by relevance and novelty.",
             },
             {
               type: "text",
-              text: "We expect around **35** participants, including organizers. We will accept one author per accepted submission to attend the workshop in person, following CHI 2026 guidelines.",
+              text: "We expect around **35** participants, including organizers. We will accept one author per accepted submission to attend the workshop in person.",
             },
           ],
         },
@@ -91,11 +91,11 @@ export const sectionData = {
             },
             {
               type: "text",
-              text: "**Attend the Workshop:** One author per submission must register for and attend the workshop in person.",
+              text: "**Attend the Workshop:** One author per submission must register for and attend the workshop in person, following CHI 2026 guidelines.",
             },
             {
               type: "text",
-              text: "**Proceedings:** All accepted submissions will be will be published in CEUR-WS proceedings and featured on this workshop website",
+              text: "**Proceedings:** All accepted submissions will be published in CEUR-WS proceedings and featured on this workshop website",
             },
           ],
         },
@@ -107,7 +107,7 @@ export const sectionData = {
     sidebar: {
       title: "Program",
       summary:
-        "The workshop runs over two 90-minute sessions and is highly interactive. We combine a human spectrogram, a pop-up panel, and fast sketching in Session 1, with small-group artefact creation in Session 2. The goal is to move from shared understanding to concrete guides, frameworks, and visions for genUI and HCI practice.",
+        "The workshop will run over two 90-minute sessions and is highly interactive. We will combine a human spectrogram, a pop-up panel, and fast sketching in Session 1, with small-group artefact creation in Session 2. The goal is to move from shared understanding to concrete guides, frameworks, and visions for genUI and HCI practice.",
       sections: [
         {
           heading: "What is the overall format?",
@@ -143,11 +143,6 @@ export const sectionData = {
                   title: "Human Spectrogram",
                   description:
                     "Participants physically position themselves along a line (strongly agree → strongly disagree) in response to provocations. Each statement is followed by a short open discussion.",
-                  details: [
-                    '"HCI practitioners need entirely new methods."',
-                    '"In the future there will be no apps."',
-                    '"The future of design will be to craft AI models, not interfaces."',
-                  ],
                 },
                 {
                   time: "30 min",
@@ -190,7 +185,7 @@ export const sectionData = {
               items: [
                 "**Guide to using genUI in HCI practice** — How will research and practice change as genUI tools emerge?.",
                 "**New software development workflows** — What roles will HCI practitioners play in model-centric ecosystems?",
-                "**Designing genUI for end-users** — What theories, principles, and methods apply to ephemeral or adaptive interfaces?",
+                "**Designing genUI for end-users** — What theories, principles, and methods apply to generative interfaces?",
                 "**Engineering stack for genUI** — How can technical approaches center user needs and values?",
                 "**Educating the next generation** — What knowledge will future HCI researchers and practitioners need?",
               ],
@@ -212,7 +207,7 @@ export const sectionData = {
           content: [
             {
               type: "text",
-              text: "We are a multidisciplinary team from industry and academia, with deep expertise including dynamic and generative UI, HCI and design practice, and the inclusion of AI capabilities in software. ",
+              text: "We are from industry and academia, with deep expertise including dynamic and generative UI, HCI and design practice, and the inclusion of AI capabilities in software. ",
             },
             {
               type: "organizer",
