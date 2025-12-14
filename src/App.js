@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import ContentNavigation from "./components/ContentNavigation";
 import DetailContent from "./components/DetailContent";
+import { getAssetPath } from "./config";
 import "./styles/App.css";
 import { ChevronDown } from "lucide-react";
 
@@ -130,7 +131,7 @@ function App() {
           </div> */}
           <a
             className="hero-secondary-link"
-            href="/genUI-chi26-workshop.pdf"
+            href={getAssetPath("genUI-chi26-workshop.pdf")}
             target="_blank"
             rel="noreferrer"
           >

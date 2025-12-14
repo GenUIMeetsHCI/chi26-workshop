@@ -51,6 +51,10 @@ module.exports = (env, argv) => {
             from: "public/organizers",
             to: "organizers",
           },
+          {
+            from: "public/*.pdf",
+            to: "[name][ext]",
+          },
         ],
       }),
       new webpack.DefinePlugin({
