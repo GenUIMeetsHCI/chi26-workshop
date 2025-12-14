@@ -119,7 +119,7 @@ function App() {
           </p>
           {/* <button className="hero-cta-button">Submission Form</button> */}
 
-          <div className="hero-cta-button">
+          {/* <div className="hero-cta-button">
             <a
               href="https://forms.office.com/r/F84grr6bV1"
               target="_blank"
@@ -127,7 +127,15 @@ function App() {
             >
               Submission Form
             </a>
-          </div>
+          </div> */}
+          <a
+            className="hero-secondary-link"
+            href="/genUI-chi26-workshop.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Read our Workshop Proposal →
+          </a>
         </div>
       </section>
 

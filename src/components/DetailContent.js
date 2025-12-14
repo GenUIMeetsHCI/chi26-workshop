@@ -88,6 +88,16 @@ function DetailContent({ section, activeSubsection, scrollContainerRef }) {
               }}
             />
           );
+        case "contactEmail":
+          return (
+            <p key={index} className="detail-text contact-email-text">
+              {item.text}{" "}
+              <a href={`mailto:${item.email}`} className="contact-email-link">
+                <Mail size={16} className="contact-email-icon" />
+                <span>{item.email}</span>
+              </a>
+            </p>
+          );
         case "list":
           return (
             <ul key={index} className="detail-list">

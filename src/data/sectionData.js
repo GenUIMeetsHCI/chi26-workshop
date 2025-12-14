@@ -294,6 +294,20 @@ export const sectionData = {
             },
           ],
         },
+        {
+          heading: "Contact us",
+          content: [
+            {
+              type: "h1",
+              text: "Contact Us",
+            },
+            {
+              type: "contactEmail",
+              text: "If you have any questions, please contact us at",
+              email: "GenUImeetsHCI@microsoft.com",
+            },
+          ],
+        },
       ],
     },
   },

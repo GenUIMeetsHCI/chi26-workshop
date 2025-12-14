@@ -145,6 +145,20 @@
   text-decoration: none;
 }
 
+.hero-secondary-link {
+  font-family: "Barlow", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #6e6e73;
+  text-decoration: none;
+  margin-top: 16px;
+  transition: color 0.2s ease;
+}
+
+.hero-secondary-link:hover {
+  color: #1d1d1f;
+}
+
 /* Split Screen Section - single scrollable page */
 .split-page {
   min-height: 100vh;
@@ -335,7 +349,8 @@
 }
 
 @media (max-width: 768px) {
-  .hero-cta-button {
+  .hero-cta-button,
+  .hero-secondary-link {
     display: none;
   }
 }
