@@ -202,15 +202,15 @@ function App() {
 
       {/* Animated Bottom Navigation */}
       <motion.nav
-        className="bottom-nav-bar"
+        className={`bottom-nav-bar ${showNav ? "" : "indicator"}`}
         initial={{
-          scale: 0.75,
+          scale: 0.8,
           opacity: 1,
           x: "-50%",
         }}
         animate={{
-          scale: showNav ? 1 : 0.75,
-          opacity: showNav ? 1 : 0.8,
+          scale: showNav ? 1.2 : 0.8,
+          opacity: showNav ? 1.2 : 0.8,
         }}
         transition={{
           type: "spring",
@@ -251,6 +251,7 @@ function App() {
           </>
         )}
         {!showNav && <ChevronDown className="down-arrow-icon" size={24} />}
+        {!showNav && <span className="scroll-text">scroll to learn more</span>}
       </motion.nav>
     </div>
   );

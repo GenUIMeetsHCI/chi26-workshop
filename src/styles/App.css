@@ -195,6 +195,7 @@
 }
 
 /* Bottom Navigation Bar */
+
 .bottom-nav-bar {
   position: fixed;
   bottom: 12px;
@@ -222,8 +223,35 @@
   min-width: 50px;
 }
 
+.bottom-nav-bar.indicator {
+  /* background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(240, 248, 255, 0.95) 100%
+  ); */
+  box-shadow: 0 4px 12px rgba(39, 108, 219, 0.06), 0 2px 4px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.466);
+  /* border: 1px solid rgba(147, 196, 253, 0.388); */
+  .scroll-text {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Barlow", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #6e6e7376;
+    text-align: center;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+  }
+}
+
 .down-arrow-icon {
-  animation: bounce 1.5s infinite;
+  animation: bounce 1.35s infinite;
 }
 
 @keyframes bounce {
