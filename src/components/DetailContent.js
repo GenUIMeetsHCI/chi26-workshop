@@ -43,11 +43,11 @@ function DetailContent({ section, activeSubsection, scrollContainerRef }) {
       if (subsectionElement && scrollContainer) {
         // Small delay to ensure DOM is updated and smooth scroll works
         setTimeout(() => {
-          // Use scrollIntoView with center alignment
-          // This will scroll the element to the center of its scrollable ancestor
+          // Use "start" for first subsection to prevent scrolling past top,
+          // "center" for others to keep them nicely visible
           subsectionElement.scrollIntoView({
             behavior: "smooth",
-            block: "center",
+            block: activeSubsection === 0 ? "start" : "center",
             inline: "nearest",
           });
         }, 50);
