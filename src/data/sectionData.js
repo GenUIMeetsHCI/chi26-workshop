@@ -114,7 +114,15 @@ export const sectionData = {
           content: [
             {
               type: "text",
-              text: "This workshop will be **in-person only**. It will consist of **two 90-minute sessions** with a break, designed to build shared understanding and create tangible artifacts for the HCI community.",
+              text: "This workshop will be **in-person only** on **Wednesday, April 15, 2026**. It will consist of **two 90-minute sessions** with a break, designed to build shared understanding and create tangible artifacts for the HCI community.",
+            },
+            {
+              type: "text",
+              text: "**Session 1:** 14:15 - 15:45 CEST",
+            },
+            {
+              type: "text",
+              text: "**Session 2:** 16:30 - 18:00 CEST",
             },
           ],
         },

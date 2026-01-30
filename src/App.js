@@ -4,7 +4,7 @@ import ContentNavigation from "./components/ContentNavigation";
 import DetailContent from "./components/DetailContent";
 import { getAssetPath } from "./config";
 import "./styles/App.css";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Info } from "lucide-react";
 
 function App() {
   const [activeCfpSubsection, setActiveCfpSubsection] = useState(0);
@@ -101,7 +101,16 @@ function App() {
             What does Generative UI mean for HCI Practice?
           </h1>
           <p className="hero-caption">
-            Creant el demà junts • Barcelona, April 2026
+            Creant el demà junts • Barcelona, Wednesday, 15 April 2026
+            <span className="info-icon-wrapper">
+              <Info className="info-icon" size={18} />
+              <span className="info-tooltip">
+                <div className="tooltip-content">
+                  <div className="tooltip-session">Session 1: 14:15 - 15:45 CEST</div>
+                  <div className="tooltip-session">Session 2: 16:30 - 18:00 CEST</div>
+                </div>
+              </span>
+            </span>
           </p>
           <p className="hero-text">
             The increasing capability of AI models to generate user interfaces

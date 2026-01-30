@@ -110,6 +110,76 @@
   font-weight: 400;
   color: #6e6e73;
   margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-icon-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.info-icon {
+  color: #6e6e73;
+  transition: color 0.2s ease;
+}
+
+.info-icon-wrapper:hover .info-icon {
+  color: #1d1d1f;
+}
+
+.info-tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px) scale(0.92);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              visibility 0.3s;
+  pointer-events: none;
+  z-index: 1000;
+  transform-origin: top center;
+}
+
+.info-icon-wrapper:hover .info-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.tooltip-content {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(248, 250, 252, 0.95) 100%
+  );
+  /* backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); */
+  border-radius: 12px;
+  border: 1px solid rgba(147, 197, 253, 0.3);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 0 20px rgba(147, 197, 253, 0.1);
+  padding: 12px 16px;
+  min-width: 240px;
+  white-space: nowrap;
+}
+
+.tooltip-session {
+  font-family: "Barlow", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1d1d1f;
+  line-height: 1.6;
+}
+
+.tooltip-session:first-child {
+  margin-bottom: 4px;
 }
 
 .hero-text {
@@ -348,6 +418,16 @@
 
   .hero-caption {
     font-size: 16px;
+    flex-wrap: wrap;
+  }
+
+  .tooltip-content {
+    min-width: 200px;
+    font-size: 13px;
+  }
+
+  .tooltip-session {
+    font-size: 12px;
   }
 
   .hero-text {
