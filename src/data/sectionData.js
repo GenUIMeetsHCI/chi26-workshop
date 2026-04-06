@@ -3,15 +3,13 @@ export const sectionData = {
   cfp: {
     sidebar: {
       title: "Call for Participation",
-      summary: `We invite researchers, designers, developers, and practitioners to explore how generative UI—interfaces created by AI models—will reshape design methods, workflows, and user experiences. 
-      `,
       sections: [
         {
           heading: "What is this workshop about?",
           content: [
             {
               type: "text",
-              text: "In this workshop we will explore how HCI practice could and should change as AI models become increasingly capable of generating UI. ",
+              text: "In this workshop we will explore how HCI practice could and should change as AI models become increasingly capable of generating UI.",
             },
             {
               type: "text",
@@ -20,26 +18,30 @@ export const sectionData = {
             {
               type: "list",
               items: [
-                "Envision how genUI can underpin innovative human-centric experiences ",
+                "Envision how genUI can underpin innovative human-centric experiences",
                 "Reflect on how HCI and design practice could and should evolve to meet the challenges this presents",
               ],
             },
           ],
         },
         {
-          heading: "How can I participate?",
+          heading: "Submissions",
           content: [
             {
               type: "h1",
-              text: "Submit Your Proposal to Participate",
+              text: "Submissions Are Now Closed",
             },
             {
               type: "text",
-              text: "We welcome submissions from scholars and practitioners working on dynamic or generative UI, as well as those with expertise in related areas. ",
+              text: "Thank you to everyone who submitted a proposal. We received a strong set of submissions from scholars and practitioners working on dynamic or generative UI, as well as those with expertise in related areas.",
+            },
+            {
+              type: "text",
+              text: "Submissions were lightly peer-reviewed by the organizing committee, evaluated by relevance and novelty.",
             },
             {
               type: "h2",
-              text: "Submission formats (choose one):",
+              text: "Accepted formats included:",
             },
             {
               type: "list",
@@ -49,53 +51,172 @@ export const sectionData = {
                 "A two-minute video",
               ],
             },
-            {
-              type: "text",
-              text: "Your submission should outline how you think genUI will enable new human-centric experiences, and how HCI and design practice will need to change to support this. Submissions must follow SIGCHI's Accessibility Guide for Authors.",
-            },
-            {
-              type: "h2",
-              text: "Submission deadline:",
-            },
-            {
-              type: "text",
-              text: "Thursday, February 12, 2026 (AOE)",
-            },
-            {
-              type: "button",
-              text: "Submission Form",
-              url: "https://forms.office.com/r/F84grr6bV1",
-              newTab: true,
-            },
           ],
         },
         {
-          heading: "How will submissions be reviewed?",
+          heading: "Participation & Publication",
           content: [
-            {
-              type: "text",
-              text: "Submissions will be lightly peer-reviewed by the organizing committee. We will evaluate by relevance and novelty.",
-            },
-            {
-              type: "text",
-              text: "We expect around **35** participants, including organizers. We will accept one author per accepted submission to attend the workshop in person.",
-            },
-          ],
-        },
-        {
-          heading: "What happens to accepted work?",
-          content: [
-            {
-              type: "h1",
-              text: "Participation & Publication ",
-            },
             {
               type: "text",
               text: "**Attend the Workshop:** One author per submission must register for and attend the workshop in person, following CHI 2026 guidelines.",
             },
             {
               type: "text",
-              text: "**Proceedings:** All accepted submissions will be published in CEUR-WS proceedings and featured on this workshop website",
+              text: "**Publication:** All accepted submissions are featured on this workshop website.",
+            },
+          ],
+        },
+      ],
+    },
+  },
+
+  submissions: {
+    sidebar: {
+      title: "Accepted Proposals",
+      sections: [
+        {
+          heading: "Accepted Submissions",
+          content: [
+            {
+              type: "text",
+              text: "We received an excellent set of position papers exploring how generative UI will reshape HCI practice. The accepted submissions are listed below (in alphabetical order).",
+            },
+            {
+              type: "paperList",
+              items: [
+                {
+                  title:
+                    "A Taxonomy and Research Agenda for Generative User Interfaces",
+                  authors:
+                    "Katja Pott, Roman Rietsche, Matthias Söllner, Thiemo Wambsganss",
+                  pdf: "proposals/taxonomy_research_agenda_genui_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "Accessible by Construction: Human-Centered Guardrails for Generative User Interfaces",
+                  authors: "Niharika Pramod Pujari",
+                  pdf: "proposals/accessible_by_construction_guardrails_chi26_workshop.pdf",
+                },
+                {
+                  title: "Back to the Future: Opening The Hood Of Everything",
+                  authors: "Hendrik Heuer",
+                  pdf: "proposals/back_to_the_future_opening_the_hood_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "Beyond Interface Generation: GenUI as Interpretive Runtime",
+                  authors: "Mattias Rost",
+                  pdf: "proposals/beyond_interface_generation_interpretive_runtime_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "Causeway: Generative UI for Just-in-Time Experiential Learning",
+                  authors: "Audrey Ostrom",
+                  video: "https://youtu.be/7sjMvdRsruw",
+                },
+                {
+                  title:
+                    "Deepening, Redirecting, Expanding: A Design Space for Generative Interfaces with Qualitative Inquiry",
+                  authors: "Jungwoo Rhee",
+                  pdf: "proposals/design_space_genui_qualitative_inquiry_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "Evaluating Personalised Generative User Interfaces on an AI Mediated Web",
+                  authors: "Joseph O'Hagan",
+                  pdf: "proposals/evaluating_personalised_genui_ai_mediated_web_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "From Automation to Scaffolding: Rethinking Generative UI for Design Upskilling",
+                  authors:
+                    "Jiayu Yuki Yin, Veronica Vasquez Hernandez, Audrey Moon, Jing Yao Yang, David T. Lee",
+                  pdf: "proposals/automation_to_scaffolding_genui_upskilling_chi26_workshop.pdf",
+                },
+                {
+                  title: "Generative Transcoding of Communicative UI Cues",
+                  authors: "Chen Liang, Anhong Guo",
+                  pdf: "proposals/generative_transcoding_communicative_cues_chi26_workshop.pdf",
+                },
+                {
+                  title: "Generative UI Alone Won't Make Software Malleable",
+                  authors: "Bryan Min",
+                  pdf: "proposals/genui_wont_make_software_malleable_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "Generative UI and the Reconfiguration of Design Practice",
+                  authors: "Pavel Okopnyi, Frode Guribye",
+                  pdf: "proposals/genui_reconfiguration_design_practice_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "Generative UI as an Accessibility Bridge: Lessons from C2C E-Commerce",
+                  authors: "Bektur Ryskeldiev",
+                  pdf: "proposals/genui_accessibility_bridge_c2c_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "Generative UI Reshapes Design Practice, Not Design Relevance",
+                  authors: "Rachel Eardley, Emma L. Tonkin",
+                  pdf: "proposals/genui_reshapes_design_practice_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "Generative UI–Enabled Experience Design: Learnings from Early Practitioners",
+                  authors: "Bradley McGraw, Guillermo Barquero, Samuel Martin",
+                  pdf: "proposals/genui_experience_design_practitioners_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "Hidden Technical Debt in Generative (GenUI) and Malleable User Interfaces",
+                  authors: "Besjon Cifliku",
+                  pdf: "proposals/hidden_technical_debt_genui_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "MAGUS: an LLM Multi-Agent Tool for Generative Accessibility of GUIs from User Stories",
+                  authors: "",
+                  pdf: "proposals/magus_multiagent_accessible_gui_chi26_workshop.pdf",
+                },
+                {
+                  title: "Maintenance of Personal Generative User Interfaces",
+                  authors: "Zhicheng Huang, Haijun Xia",
+                  pdf: "proposals/maintenance_personal_genui_chi26_workshop.pdf",
+                },
+                {
+                  title: "Negotiated Agency in Generative User Interfaces",
+                  authors: "Eryue Xu, Mengke Wu",
+                  pdf: "proposals/negotiated_agency_genui_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "Not Another EHR: Reimagining Physician Information Needs with Generative AI Technology",
+                  authors:
+                    "Ruican Zhong, Jicahen Li, Gary Hsieh, David W. McDonald, Selin S. Everett, Alyssa Unell, Jonathan Carlson, Katie Claveau, Noel Codella, Khalil Malik, Scott Mackie, Eduardo Olvera, Scott Saponas, Eric Horvitz, David Rhew, Jim Weinstein, Jacob Gross, Amanda K. Hall",
+                  pdf: "proposals/not_another_ehr_physician_genai_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "Situated and Dynamic Human-AI Communication through Generative Interaction-Augmented Instruction at Runtime",
+                  authors: "Haotian Li, Leixian Shen, Yifang Wang",
+                  pdf: "proposals/situated_dynamic_geniai_runtime_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "User Agency in Runtime Malleable Software Under Change Aversion",
+                  authors:
+                    "Xinqi Zhang, Bryan Min, Shizhao (Lawrence) Liu, Kai Lukoff",
+                  pdf: "proposals/user_agency_runtime_malleable_chi26_workshop.pdf",
+                },
+                {
+                  title:
+                    "User-Constructed Information Architecture as a Persistence Layer for GenUI",
+                  authors:
+                    "Eunhye Kim, DaEun Choi, Hyunjung Yi, Bryan Min, Yue Jiang, Juho Kim",
+                  pdf: "proposals/user_constructed_ia_persistence_genui_chi26_workshop.pdf",
+                },
+              ],
             },
           ],
         },

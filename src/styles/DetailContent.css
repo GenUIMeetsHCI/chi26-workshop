@@ -580,6 +580,84 @@
   font-weight: 400;
 }
 
+/* Paper list styles */
+.paper-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.paper-card {
+  display: block;
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(240, 248, 255, 0.4) 100%
+  );
+  border: 1px solid rgba(147, 197, 253, 0.15);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.paper-card:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(240, 248, 255, 0.95) 100%
+  );
+  border-color: rgba(147, 197, 253, 0.35);
+  box-shadow: 0 3px 12px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transform: translateY(-1px);
+}
+
+.paper-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.paper-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.paper-title {
+  font-family: "Barlow", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.paper-pdf-icon {
+  color: #9ca3af;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: color 0.2s ease;
+}
+
+.paper-card:hover .paper-pdf-icon {
+  color: #3b82f6;
+}
+
+.paper-authors {
+  font-family: "Barlow", sans-serif;
+  font-size: 13px;
+  color: #6e6e73;
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
 /* Scrollbar styling - remove since using global scroll */
 
 /* Responsive styles */
@@ -702,6 +780,18 @@
 
   .organizer-name {
     font-size: 1.125rem;
+  }
+
+  .paper-card {
+    padding: 0.875rem 1rem;
+  }
+
+  .paper-title {
+    font-size: 14px;
+  }
+
+  .paper-authors {
+    font-size: 12px;
   }
 
   .research-focus-bubble {

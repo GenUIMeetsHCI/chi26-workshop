@@ -8,6 +8,8 @@ import { ChevronDown, Info } from "lucide-react";
 
 function App() {
   const [activeCfpSubsection, setActiveCfpSubsection] = useState(0);
+  const [activeSubmissionsSubsection, setActiveSubmissionsSubsection] =
+    useState(0);
   const [activeProgramSubsection, setActiveProgramSubsection] = useState(0);
   const [activeOrganizersSubsection, setActiveOrganizersSubsection] =
     useState(0);
@@ -16,6 +18,7 @@ function App() {
   const containerRef = useRef(null);
   const heroRef = useRef(null);
   const cfpRef = useRef(null);
+  const submissionsRef = useRef(null);
   const programRef = useRef(null);
   const organizersRef = useRef(null);
 
@@ -24,6 +27,7 @@ function App() {
     const refs = {
       home: heroRef,
       cfp: cfpRef,
+      submissions: submissionsRef,
       program: programRef,
       organizers: organizersRef,
     };
@@ -55,6 +59,7 @@ function App() {
         // Determine which section is currently in view
         const heroTop = heroRef.current?.offsetTop || 0;
         const cfpTop = cfpRef.current?.offsetTop || 0;
+        const submissionsTop = submissionsRef.current?.offsetTop || 0;
         const programTop = programRef.current?.offsetTop || 0;
         const organizersTop = organizersRef.current?.offsetTop || 0;
 
@@ -62,8 +67,10 @@ function App() {
 
         if (scrollWithOffset < cfpTop) {
           setActiveSection("home");
-        } else if (scrollWithOffset < programTop) {
+        } else if (scrollWithOffset < submissionsTop) {
           setActiveSection("cfp");
+        } else if (scrollWithOffset < programTop) {
+          setActiveSection("submissions");
         } else if (scrollWithOffset < organizersTop) {
           setActiveSection("program");
         } else {
@@ -122,9 +129,9 @@ function App() {
             <br />
             This will be an interactive and discussion-oriented workshop,
             featuring a pop-up panel, creative ideation exercises, and
-            collaborative artefact development. We will welcome submissions from
+            collaborative artefact development. The workshop brings together
             scholars and practitioners working on dynamic or generative UI, as
-            well as those with expertise in related areas to join the
+            well as those with expertise in related areas, to join the
             conversation.
           </p>
           {/* <button className="hero-cta-button">Submission Form</button> */}
@@ -149,7 +156,7 @@ function App() {
         </div>
       </section>
 
-      {/* CFP Section */}
+      {/* Call for Participation Section */}
       <section className="split-page" ref={cfpRef}>
         <div className="split-container">
           <div className="split-left">
@@ -163,6 +170,26 @@ function App() {
             <DetailContent
               section="cfp"
               activeSubsection={activeCfpSubsection}
+              scrollContainerRef={containerRef}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Accepted Proposals Section */}
+      <section className="split-page" ref={submissionsRef}>
+        <div className="split-container">
+          <div className="split-left">
+            <ContentNavigation
+              activeSection="submissions"
+              activeSubsection={activeSubmissionsSubsection}
+              onSubsectionClick={setActiveSubmissionsSubsection}
+            />
+          </div>
+          <div className="split-right">
+            <DetailContent
+              section="submissions"
+              activeSubsection={activeSubmissionsSubsection}
               scrollContainerRef={containerRef}
             />
           </div>
@@ -240,6 +267,14 @@ function App() {
               onClick={() => handleSectionClick("cfp")}
             >
               Call for Participation
+            </div>
+            <div
+              className={`nav-tab ${
+                activeSection === "submissions" ? "active" : ""
+              }`}
+              onClick={() => handleSectionClick("submissions")}
+            >
+              Accepted Proposals
             </div>
             <div
               className={`nav-tab ${

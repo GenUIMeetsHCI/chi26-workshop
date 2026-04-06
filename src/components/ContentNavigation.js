@@ -12,7 +12,7 @@ function ContentNavigation({
   activeSubsection,
   onSubsectionClick,
 }) {
-  const data = sectionData[activeSection]?.sidebar || sectionData.cfp.sidebar;
+  const data = sectionData[activeSection]?.sidebar || sectionData.submissions.sidebar;
 
   // Handle click on empty space to deselect
   const handlePanelClick = (e) => {

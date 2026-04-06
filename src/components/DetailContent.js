@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { sectionData } from "../data/sectionData";
 import { getAssetPath } from "../config";
-import { Globe, Mail } from "lucide-react";
+import { Globe, Mail, FileText, Youtube } from "lucide-react";
 import "../styles/DetailContent.css";
 
 /**
@@ -9,7 +9,7 @@ import "../styles/DetailContent.css";
  * Shows as "answer bubbles" when subsections are highlighted
  */
 function DetailContent({ section, activeSubsection, scrollContainerRef }) {
-  const data = sectionData[section]?.sidebar || sectionData.cfp.sidebar;
+  const data = sectionData[section]?.sidebar || sectionData.submissions.sidebar;
   const subsectionRefs = useRef([]);
   const prevActiveSubsection = useRef(activeSubsection);
   const isFirstRender = useRef(true);
@@ -158,6 +158,36 @@ function DetailContent({ section, activeSubsection, scrollContainerRef }) {
               ))}
             </div>
           );
+        case "paperList":
+          return (
+            <div key={index} className="paper-list">
+              {item.items.map((paper, i) => {
+                const href = paper.pdf
+                  ? getAssetPath(paper.pdf)
+                  : paper.video;
+                const Icon = paper.video ? Youtube : FileText;
+                return (
+                  <a
+                    key={i}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="paper-card"
+                  >
+                    <div className="paper-card-content">
+                      <div className="paper-title-row">
+                        <h4 className="paper-title">{paper.title}</h4>
+                        <Icon size={16} className="paper-pdf-icon" />
+                      </div>
+                      {paper.authors && (
+                        <p className="paper-authors">{paper.authors}</p>
+                      )}
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          );
         case "organizer":
           return (
             <div key={index} className={`organizer-bubble`}>
@@ -228,7 +258,7 @@ function DetailContent({ section, activeSubsection, scrollContainerRef }) {
           <div
             key={idx}
             className={`detail-section ${
-              activeSubsection === idx && section !== "organizers"
+              activeSubsection === idx && section !== "organizers" && section !== "submissions"
                 ? "highlighted"
                 : ""
             }`}
