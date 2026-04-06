@@ -52,6 +52,10 @@ module.exports = (env, argv) => {
             to: "organizers",
           },
           {
+            from: "public/proposals",
+            to: "proposals",
+          },
+          {
             from: "public/*.pdf",
             to: "[name][ext]",
           },
