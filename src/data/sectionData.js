@@ -213,7 +213,7 @@ export const sectionData = {
                   title:
                     "User-Constructed Information Architecture as a Persistence Layer for GenUI",
                   authors:
-                    "Eunhye Kim, DaEun Choi, Hyunjung Yi, Bryan Min, Yue Jiang, Juho Kim",
+                    "Eunhye Kim, Hyunjung Yi, DaEun Choi, Bryan Min, Yue Jiang, Juho Kim",
                   pdf: "proposals/user_constructed_ia_persistence_genui_chi26_workshop.pdf",
                 },
               ],
