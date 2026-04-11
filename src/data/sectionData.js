@@ -104,6 +104,12 @@ export const sectionData = {
                 },
                 {
                   title:
+                    "Beyond Form Generators: Do Generative User Interfaces Have a Ceiling?",
+                  authors: "Jo Vermeulen",
+                  pdf: "proposals/beyond_form_generators_genui_ceiling_chi26_workshop.pdf",
+                },
+                {
+                  title:
                     "Beyond Interface Generation: GenUI as Interpretive Runtime",
                   authors: "Mattias Rost",
                   pdf: "proposals/beyond_interface_generation_interpretive_runtime_chi26_workshop.pdf",
