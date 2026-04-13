@@ -134,6 +134,12 @@ export const sectionData = {
                 },
                 {
                   title:
+                    "Exploring the Potential of Run-Time Generative UI Through Project-Based Teaching",
+                  authors: "Hanna Moser, Malin Eiband",
+                  pdf: "proposals/exploring_the_potential_of_runtime_genui_chi26_workshop.pdf",
+                },
+                {
+                  title:
                     "From Automation to Scaffolding: Rethinking Generative UI for Design Upskilling",
                   authors:
                     "Jiayu Yuki Yin, Veronica Vasquez Hernandez, Audrey Moon, Jing Yao Yang, David T. Lee",
