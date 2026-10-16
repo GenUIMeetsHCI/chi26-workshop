@@ -1,8 +1,8 @@
 // Workshop report. Each section has an optional heading and a list of paragraphs.
+// Inline markup: *italic*, ==key concept== (hand-inked underline).
 export const report = {
   title: "Designing for Change: What Generative UI Means for HCI",
-  subtitle:
-    "Reflections from the CHI 2026 workshop “What does Generative UI mean for HCI Practice?”",
+  subtitle: "Oct.16, 2026",
   sections: [
     {
       paragraphs: [
@@ -14,16 +14,16 @@ export const report = {
     {
       heading: "From finished artefacts to bounded adaptiveness",
       paragraphs: [
-        "While generative UI could enable interfaces that adapt to each person, moment, or preference, in practice, people rely on stable landmarks to orient themselves, remember how things work, and coordinate with others. This suggests instead a notion of bounded adaptiveness. Some aspects of an interface can change usefully – layout density, recommended actions, emphasis – while others benefit from staying put. Navigation, core workflows, and shared conventions often need stability. The design task must therefore shift from specifying every detail to negotiating and encoding what is allowed to vary, what must remain stable, and how those boundaries are made intelligible to users and teams.",
+        "While generative UI could enable interfaces that adapt to each person, moment, or preference, in practice, people rely on stable landmarks to orient themselves, remember how things work, and coordinate with others. This suggests instead a notion of ==bounded adaptiveness==. Some aspects of an interface can change usefully – layout density, recommended actions, emphasis – while others benefit from staying put. Navigation, core workflows, and shared conventions often need stability. The design task must therefore shift from specifying every detail to negotiating and encoding what is allowed to vary, what must remain stable, and how those boundaries are made intelligible to users and teams.",
         "This requires designers to craft rules, ranges, and constraints. A generative interface that adapts responsibly does not simply optimise for relevance or efficiency. It preserves orientation and trust by making change legible and reversible. Responsiveness and delay also need to be considered here. Generation time, pauses, and moments of uncertainty shape users’ sense of agency and confidence, and should be treated as interaction design concerns rather than invisible technical artefacts.",
       ],
     },
     {
       heading: "Personalisation without losing common ground",
       paragraphs: [
-        "Generative UI opens the door to rich personalisation: interfaces that fit individual goals, expertise, or context. But personalisation has a social cost. When everyone sees a different interface, collaboration becomes harder. Helping a colleague, teaching a newcomer, or documenting a workflow all rely on shared reference points. The question for HCI is therefore not whether to personalise, but how to do so without fragmenting shared understanding.",
+        "Generative UI opens the door to rich personalisation: interfaces that fit individual goals, expertise, or context. But ==personalisation has a social cost==. When everyone sees a different interface, collaboration becomes harder. Helping a colleague, teaching a newcomer, or documenting a workflow all rely on shared reference points. The question for HCI is therefore not whether to personalise, but how to do so without fragmenting shared understanding.",
         "One response is to design for multiple views. A system might offer personalised modes alongside canonical or shared views that make collaboration and support possible. Another is to stabilise certain elements – labels, structures, workflows – while allowing variation elsewhere. These are not technical afterthoughts; they are interaction design decisions that shape how people work together.",
-        "The challenge is not to maximise fluidity, but to preserve common ground alongside individual fit – so that adaptation supports use without undermining collective legibility.",
+        "The challenge is not to maximise fluidity, but to ==preserve common ground alongside individual fit== – so that adaptation supports use without undermining collective legibility.",
       ],
     },
     {

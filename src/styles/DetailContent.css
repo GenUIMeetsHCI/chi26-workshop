@@ -393,8 +393,17 @@
 /* Responsive styles */
 
 :root {
-  --ink-underline-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 10' preserveAspectRatio='none'%3E%3Cfilter id='r' x='-2%25' y='-50%25' width='104%25' height='200%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.35' numOctaves='2' seed='4'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='2.2'/%3E%3C/filter%3E%3Cpath filter='url(%23r)' fill='%239a9aa0' d='M2 6.4 C 22 5.2, 48 5.0, 80 5.3 S 140 4.4, 176 4.6 S 220 4.0, 238 3.4 C 239.5 3.3, 239.5 4.6, 237.5 4.9 C 216 6.0, 186 6.6, 150 6.9 S 84 7.4, 46 7.6 S 12 7.7, 2.6 7.3 C 0.8 7.2, 0.8 6.5, 2 6.4 Z'/%3E%3C/svg%3E");
-  --ink-underline-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 10' preserveAspectRatio='none'%3E%3Cfilter id='r' x='-2%25' y='-50%25' width='104%25' height='200%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.35' numOctaves='2' seed='4'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='2.2'/%3E%3C/filter%3E%3Cpath filter='url(%23r)' fill='%231d1d1f' d='M2 6.4 C 22 5.2, 48 5.0, 80 5.3 S 140 4.4, 176 4.6 S 220 4.0, 238 3.4 C 239.5 3.3, 239.5 4.6, 237.5 4.9 C 216 6.0, 186 6.6, 150 6.9 S 84 7.4, 46 7.6 S 12 7.7, 2.6 7.3 C 0.8 7.2, 0.8 6.5, 2 6.4 Z'/%3E%3C/svg%3E");
+  --ink-underline-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 10' preserveAspectRatio='none'%3E%3Cfilter id='r' x='-2%25' y='-50%25' width='104%25' height='200%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7 0.3' numOctaves='2' seed='4'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='1.6'/%3E%3C/filter%3E%3Cpath filter='url(%23r)' fill='%23a8a8ad' d='M3 5.6 C 24 4.0, 54 3.4, 90 3.6 S 150 2.6, 186 2.9 S 222 2.6, 237 2.8 C 239.6 2.9, 239.6 4.6, 237 5.0 C 214 6.0, 182 6.7, 146 7.1 S 80 7.9, 44 8.1 S 12 8.0, 3.4 7.4 C 0.6 7.1, 0.8 5.8, 3 5.6 Z'/%3E%3C/svg%3E");
+  --ink-underline-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 10' preserveAspectRatio='none'%3E%3Cfilter id='r' x='-2%25' y='-50%25' width='104%25' height='200%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7 0.3' numOctaves='2' seed='9'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='1.6'/%3E%3C/filter%3E%3Cpath filter='url(%23r)' fill='%234a4a4f' d='M3 5.6 C 24 4.0, 54 3.4, 90 3.6 S 150 2.6, 186 2.9 S 222 2.6, 237 2.8 C 239.6 2.9, 239.6 4.6, 237 5.0 C 214 6.0, 182 6.7, 146 7.1 S 80 7.9, 44 8.1 S 12 8.0, 3.4 7.4 C 0.6 7.1, 0.8 5.8, 3 5.6 Z'/%3E%3C/svg%3E");
+  --ink-underline-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 10' preserveAspectRatio='none'%3E%3Cfilter id='r' x='-2%25' y='-50%25' width='104%25' height='200%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7 0.3' numOctaves='2' seed='4'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='1.6'/%3E%3C/filter%3E%3Cpath filter='url(%23r)' fill='%231d1d1f' d='M3 5.6 C 24 4.0, 54 3.4, 90 3.6 S 150 2.6, 186 2.9 S 222 2.6, 237 2.8 C 239.6 2.9, 239.6 4.6, 237 5.0 C 214 6.0, 182 6.7, 146 7.1 S 80 7.9, 44 8.1 S 12 8.0, 3.4 7.4 C 0.6 7.1, 0.8 5.8, 3 5.6 Z'/%3E%3C/svg%3E");
+}
+
+/* Key concepts in the report: a static hand-inked underline */
+.ink-mark {
+  padding-bottom: 4px;
+  background: var(--ink-underline-mark) no-repeat left bottom / 100% 8px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 /* Inline links inside text: keep them in the text color */
@@ -403,19 +412,19 @@
 .contact-email-link {
   color: inherit;
   text-decoration: none;
-  padding-bottom: 3px;
+  padding-bottom: 4px;
   /* Hand-inked underline: a dark stroke draws in over a light one on hover */
   background-image: var(--ink-underline-dark), var(--ink-underline-light);
   background-repeat: no-repeat;
   background-position: left bottom, left bottom;
-  background-size: 0% 7px, 100% 7px;
+  background-size: 0% 8px, 100% 8px;
   transition: background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .detail-text a:hover,
 .detail-list a:hover,
 .contact-email-link:hover {
-  background-size: 100% 7px, 100% 7px;
+  background-size: 100% 8px, 100% 8px;
 }
 
 .detail-subtitle {
@@ -488,8 +497,8 @@
 .organizer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 20px;
-  margin-top: 8px;
+  gap: 4px 16px;
+  margin-top: 6px;
 }
 
 .organizer-link {
@@ -497,9 +506,9 @@
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
   font-family: "Barlow", sans-serif;
-  font-size: 15px;
+  font-size: 13.5px;
+  letter-spacing: 0.01em;
   color: #6e6e73;
   text-decoration: none;
   transition: color 0.2s ease;

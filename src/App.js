@@ -225,7 +225,7 @@ function App() {
               What does Generative UI mean for HCI Practice?
             </h1>
             <p className="hero-teaser">
-              When interfaces can be generated at run time, the interface is no
+              When interfaces can be generated at runtime, the interface is no
               longer a finished artefact but a space of possibilities. What
               does that change about how HCI designs, builds, and evaluates?
             </p>

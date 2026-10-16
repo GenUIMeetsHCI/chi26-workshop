@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { sectionData } from "../data/sectionData";
 import { getAssetPath } from "../config";
-import { ArrowUpRight, Check, Copy, Mail, FileText, Youtube } from "lucide-react";
+import { Mail, FileText, Youtube } from "lucide-react";
 import "../styles/DetailContent.css";
 
 /**
@@ -49,7 +49,8 @@ function DetailContent({ section }) {
               dangerouslySetInnerHTML={{
                 __html: item.text
                   .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-                  .replace(/\*(.*?)\*/g, "<em>$1</em>"),
+                  .replace(/\*(.*?)\*/g, "<em>$1</em>")
+                  .replace(/==(.*?)==/g, '<span class="ink-mark">$1</span>'),
               }}
             />
           );
@@ -184,7 +185,6 @@ function DetailContent({ section }) {
                         className="organizer-link"
                       >
                         Website
-                        <ArrowUpRight size={15} strokeWidth={1.75} />
                       </a>
                     )}
                     {item.email && (
@@ -193,17 +193,7 @@ function DetailContent({ section }) {
                         onClick={() => handleCopyEmail(item.email, item.name)}
                         title="Copy email address"
                       >
-                        {copiedEmail === item.name ? (
-                          <>
-                            Copied
-                            <Check size={15} strokeWidth={1.75} />
-                          </>
-                        ) : (
-                          <>
-                            Email
-                            <Copy size={14} strokeWidth={1.75} />
-                          </>
-                        )}
+                        {copiedEmail === item.name ? "Copied" : "Email"}
                       </button>
                     )}
                   </div>
