@@ -32,7 +32,7 @@ export const report = {
         "If interfaces are generated rather than fixed, many interaction qualities depend on decisions made well beyond the visible surface. What data does the system use to adapt? How are tasks represented? Which components are reusable, and which are off-limits? How are accessibility or safety requirements enforced when layouts are composed dynamically?",
         "These questions point to a broader reframing of HCI practice. Design knowledge increasingly lives in systems: design systems, component libraries, intermediate representations, policy layers, and evaluation pipelines. The interface a user sees is the result of these structures interacting with models and context.",
         "This pulls HCI work both “up” and “down” the stack. Upwards, toward organisational questions about governance, accountability, and values. Downwards, toward technical decisions about abstractions, constraints, and infrastructure. Engaging with these layers means recognising that those concerns are now realised through system design as much as through visual or interaction design.",
-        "Importantly, generative systems also surface conflicts between design principles – such as accessibility versus density, or creativity versus consistency – that were previously resolved implicitly through human judgement. Designing how such conflicts are detected, prioritised, and resolved becomes a first-class HCI concern.",
+        "Importantly, generative systems also surface conflicts between design principles – such as accessibility versus density, or creativity versus consistency – that were previously resolved implicitly through human judgement. ==Designing how such conflicts are detected, prioritised, and resolved== becomes a first-class HCI concern.",
       ],
     },
     {
@@ -41,7 +41,7 @@ export const report = {
         "Evaluation has always been central to HCI, but generative UI complicates familiar methods. If an interface changes across users and over time, evaluating a single configuration tells us little. What matters instead is the space of interfaces a system can produce, and the trajectories users experience as those interfaces evolve.",
         "This suggests layered approaches to evaluation. Qualitative studies remain essential for understanding lived experience. But they may need to be complemented by simulation, synthetic testing, telemetry, and rule-based checks that explore variability, edge cases, and long-term effects. Evaluation shifts from asking “Is this interface usable?” to “Does this system generate usable, fair, and comprehensible interfaces across contexts?”",
         "This is not an argument for replacing human judgement with metrics. On the contrary, as systems become more autonomous, the need for human interpretation, value judgements, and critical reflection increases. Evaluation becomes as much about governance as about measurement.",
-        "Beyond isolated failures, generative interfaces may also drift gradually over time as models, data, and constraints evolve. Detecting and managing this cumulative change becomes as important as identifying immediate usability problems.",
+        "Beyond isolated failures, generative interfaces may also drift gradually over time as models, data, and constraints evolve. ==Detecting and managing this cumulative change== becomes as important as identifying immediate usability problems.",
       ],
     },
     {
