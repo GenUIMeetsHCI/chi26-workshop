@@ -1,18 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { sectionData } from "../data/sectionData";
 import { getAssetPath } from "../config";
-import { Globe, Mail, FileText, Youtube } from "lucide-react";
+import { ArrowUpRight, Check, Copy, Mail, FileText, Youtube } from "lucide-react";
 import "../styles/DetailContent.css";
 
 /**
- * Right content panel displaying detailed section information
- * Shows as "answer bubbles" when subsections are highlighted
+ * Content for one page section. Each subsection gets an id
+ * (`${section}-${idx}`) so the side navigation can scroll to and track it.
  */
-function DetailContent({ section, activeSubsection, scrollContainerRef }) {
+function DetailContent({ section }) {
   const data = sectionData[section]?.sidebar || sectionData.submissions.sidebar;
-  const subsectionRefs = useRef([]);
-  const prevActiveSubsection = useRef(activeSubsection);
-  const isFirstRender = useRef(true);
   const [copiedEmail, setCopiedEmail] = useState(null);
 
   const handleCopyEmail = (email, organizerName) => {
@@ -21,43 +18,6 @@ function DetailContent({ section, activeSubsection, scrollContainerRef }) {
       setTimeout(() => setCopiedEmail(null), 2000);
     });
   };
-
-  // Scroll to focused subsection when clicked - centers it in the viewport
-  useEffect(() => {
-    // Skip scroll on first render
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      prevActiveSubsection.current = activeSubsection;
-      return;
-    }
-
-    // Only scroll if subsection actually changed
-    if (
-      activeSubsection !== null &&
-      activeSubsection !== prevActiveSubsection.current &&
-      subsectionRefs.current[activeSubsection]
-    ) {
-      const subsectionElement = subsectionRefs.current[activeSubsection];
-      const scrollContainer = scrollContainerRef?.current;
-
-      if (subsectionElement && scrollContainer) {
-        // Small delay to ensure DOM is updated and smooth scroll works
-        setTimeout(() => {
-          // Use "start" for first subsection to prevent scrolling past top,
-          // "center" for others to keep them nicely visible
-          subsectionElement.scrollIntoView({
-            behavior: "smooth",
-            block: activeSubsection === 0 ? "start" : "center",
-            inline: "nearest",
-          });
-        }, 50);
-      }
-    }
-
-    // Update the previous value
-    prevActiveSubsection.current = activeSubsection;
-  }, [activeSubsection, scrollContainerRef, section]);
-
   const renderContent = (contentArray) => {
     if (!contentArray) return null;
 
@@ -75,16 +35,21 @@ function DetailContent({ section, activeSubsection, scrollContainerRef }) {
               {item.text}
             </h2>
           );
+        case "subtitle":
+          return (
+            <p key={index} className="detail-subtitle">
+              {item.text}
+            </p>
+          );
         case "text":
           return (
             <p
               key={index}
               className="detail-text"
               dangerouslySetInnerHTML={{
-                __html: item.text.replace(
-                  /\*\*(.*?)\*\*/g,
-                  "<strong>$1</strong>"
-                ),
+                __html: item.text
+                  .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+                  .replace(/\*(.*?)\*/g, "<em>$1</em>"),
               }}
             />
           );
@@ -190,56 +155,59 @@ function DetailContent({ section, activeSubsection, scrollContainerRef }) {
           );
         case "organizer":
           return (
-            <div key={index} className={`organizer-bubble`}>
-              <div className="organizer-left">
-                <div className="organizer-image">
-                  {item.image ? (
-                    <img src={getAssetPath(item.image)} alt={item.name} />
-                  ) : (
-                    <div className="organizer-avatar-placeholder">
-                      {item.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </div>
-                  )}
-                </div>
-                <div className="organizer-info">
-                  <h4 className="organizer-name">{item.name}</h4>
-                  <p className="organizer-title">{item.title}</p>
-                  {(item.website || item.email) && (
-                    <div className="organizer-links">
-                      {item.website && (
-                        <a
-                          href={item.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="organizer-link-btn"
-                          title="Visit website"
-                        >
-                          <Globe size={13} />
-                        </a>
-                      )}
-                      {item.email && (
-                        <button
-                          className="organizer-link-btn"
-                          onClick={() => handleCopyEmail(item.email, item.name)}
-                          title="Copy email"
-                        >
-                          <Mail size={13} />
-                          {copiedEmail === item.name && (
-                            <span className="copied-tooltip">Copied!</span>
-                          )}
-                        </button>
-                      )}
-                    </div>
-                  )}
-                </div>
+            <div key={index} className="organizer-row">
+              <div className="organizer-image">
+                {item.image ? (
+                  <img src={getAssetPath(item.image)} alt={item.name} />
+                ) : (
+                  <div className="organizer-avatar-placeholder">
+                    {item.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
+                )}
               </div>
-              <div className="organizer-right">
-                <div className="research-focus-bubble">
-                  <p className="research-focus-text">{item.researchFocus}</p>
+              <div className="organizer-body">
+                <div className="organizer-head">
+                  <h4 className="organizer-name">{item.name}</h4>
+                  <span className="organizer-title">{item.title}</span>
                 </div>
+                <p className="research-focus-text">{item.researchFocus}</p>
+                {(item.website || item.email) && (
+                  <div className="organizer-links">
+                    {item.website && (
+                      <a
+                        href={item.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="organizer-link"
+                      >
+                        Website
+                        <ArrowUpRight size={15} strokeWidth={1.75} />
+                      </a>
+                    )}
+                    {item.email && (
+                      <button
+                        className="organizer-link"
+                        onClick={() => handleCopyEmail(item.email, item.name)}
+                        title="Copy email address"
+                      >
+                        {copiedEmail === item.name ? (
+                          <>
+                            Copied
+                            <Check size={15} strokeWidth={1.75} />
+                          </>
+                        ) : (
+                          <>
+                            Email
+                            <Copy size={14} strokeWidth={1.75} />
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           );
@@ -250,20 +218,12 @@ function DetailContent({ section, activeSubsection, scrollContainerRef }) {
   };
 
   return (
-    <div className="detail-content-panel">
+    <div className={`detail-content-panel section-${section}`}>
       <div className="detail-content">
-        {/* Subsections with answer bubble highlighting */}
-        <div className="detail-section-title">{data.title}</div>
+        {/* Section label, then subsections */}
+        <h2 className="detail-section-title">{data.title}</h2>
         {data.sections?.map((sec, idx) => (
-          <div
-            key={idx}
-            className={`detail-section ${
-              activeSubsection === idx && section !== "organizers" && section !== "submissions"
-                ? "highlighted"
-                : ""
-            }`}
-            ref={(el) => (subsectionRefs.current[idx] = el)}
-          >
+          <div key={idx} id={`${section}-${idx}`} className="detail-section">
             {renderContent(sec.content)}
           </div>
         ))}

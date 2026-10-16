@@ -1,4 +1,6 @@
 // Data for all sections
+import { report } from "./report";
+import { getAssetPath } from "../config";
 export const sectionData = {
   cfp: {
     sidebar: {
@@ -324,7 +326,7 @@ export const sectionData = {
             {
               type: "list",
               items: [
-                "**Guide to using genUI in HCI practice** — How will research and practice change as genUI tools emerge?.",
+                "**Guide to using genUI in HCI practice** — How will research and practice change as genUI tools emerge?",
                 "**New software development workflows** — What roles will HCI practitioners play in model-centric ecosystems?",
                 "**Designing genUI for end-users** — What theories, principles, and methods apply to generative interfaces?",
                 "**Engineering stack for genUI** — How can technical approaches center user needs and values?",
@@ -451,5 +453,51 @@ export const sectionData = {
         },
       ],
     },
+  },
+};
+
+// Workshop report, rendered with the same content blocks as other sections
+sectionData.report = {
+  sidebar: {
+    title: "Workshop Report",
+    sections: report.sections.map((s) => ({
+      heading: s.heading || "Introduction",
+      content: [
+        ...(s.heading
+          ? [{ type: "h2", text: s.heading }]
+          : [
+              { type: "h1", text: report.title },
+              { type: "subtitle", text: report.subtitle },
+            ]),
+        ...s.paragraphs.map((text) => ({ type: "text", text })),
+      ],
+    })),
+  },
+};
+
+// Archive: workshop proposal, call for participation, and program
+sectionData.archive = {
+  sidebar: {
+    title: "Archive",
+    sections: [
+      {
+        heading: "Workshop proposal",
+        content: [
+          { type: "h1", text: "Workshop Proposal" },
+          {
+            type: "text",
+            text: "The original CHI 2026 workshop proposal, describing the workshop's goals, format, and organizers.",
+          },
+          {
+            type: "button",
+            text: "Read the Workshop Proposal",
+            url: getAssetPath("genUI-chi26-workshop.pdf"),
+            newTab: true,
+          },
+        ],
+      },
+      ...sectionData.cfp.sidebar.sections,
+      ...sectionData.program.sidebar.sections,
+    ],
   },
 };

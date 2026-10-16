@@ -6,25 +6,30 @@
   padding: 0;
 }
 
+.svg-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 .app-container {
   width: 100%;
   height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y proximity;
-  scroll-behavior: auto;
-}
-
-.hero-page-container {
-  scroll-snap-type: y mandatory;
+  overflow-y: auto;
 }
 /* Hero Page Section */
-.hero-page {
-  min-height: 100vh;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  scroll-snap-align: start;
+:root {
+  /* Translucent washi: soft grain and cloudy density, no fibers */
+  --washi: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.3  0 0 0 0 0.3  0 0 0 0 0.3  0 0 0 0.06 0'/%3E%3C/filter%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='3' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.18 -0.04'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    linear-gradient(125deg, rgba(242, 242, 242, 0.5), rgba(245, 254, 255, 0.5));
+  /* Denser washi for the open menu, so its text stays legible */
+  --washi-dense: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.3  0 0 0 0 0.3  0 0 0 0 0.3  0 0 0 0.06 0'/%3E%3C/filter%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='3' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.18 -0.04'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    linear-gradient(125deg, rgba(242, 242, 242, 0.9), rgba(245, 254, 255, 0.9));
+  /* Torn bottom edge, used as a mask (tiles seamlessly) */
+  --torn-edge: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='14' viewBox='0 0 900 14'%3E%3Cfilter id='s' x='0' y='-20%25' width='100%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='0.45'/%3E%3C/filter%3E%3Cpath d='M0 0 L0 7.31 L2 7.81 L4 7.63 L6 7.34 L8 7.48 L10 7.19 L12 6.99 L14 7.42 L16 7.44 L18 7.34 L20 7.49 L22 7.46 L24 8.06 L26 8.74 L28 8.00 L30 7.66 L32 8.55 L34 8.21 L36 7.11 L38 7.20 L40 7.39 L42 7.04 L44 6.92 L46 6.64 L48 6.23 L50 6.37 L52 6.73 L54 6.79 L56 6.58 L58 6.42 L60 6.48 L62 6.37 L64 6.33 L66 6.87 L68 7.17 L70 6.88 L72 6.81 L74 6.76 L76 6.39 L78 6.27 L80 6.18 L82 5.90 L84 6.03 L86 6.34 L88 6.33 L90 6.30 L92 6.14 L94 5.86 L96 6.06 L98 6.55 L100 6.70 L102 6.63 L104 6.32 L106 5.76 L108 5.64 L110 6.25 L112 7.01 L114 7.36 L116 7.15 L118 7.08 L120 7.76 L122 8.29 L124 7.98 L126 7.50 L128 7.15 L130 6.93 L132 7.25 L134 7.69 L136 7.53 L138 7.07 L140 6.79 L142 6.69 L144 6.73 L146 6.76 L148 6.84 L150 7.16 L152 7.49 L154 7.52 L156 7.35 L158 7.52 L160 8.23 L162 8.59 L164 7.99 L166 7.46 L168 7.62 L170 7.41 L172 6.62 L174 6.56 L176 7.06 L178 6.67 L180 6.09 L182 6.55 L184 6.59 L186 5.79 L188 6.17 L190 7.18 L192 7.08 L194 6.91 L196 6.90 L198 6.16 L200 5.78 L202 5.87 L204 5.30 L206 4.97 L208 5.22 L210 5.05 L212 4.91 L214 5.02 L216 5.11 L218 5.79 L220 6.36 L222 5.81 L224 5.32 L226 5.71 L228 6.14 L230 6.32 L232 6.52 L234 6.72 L236 6.76 L238 6.78 L240 6.83 L242 6.57 L244 6.29 L246 6.54 L248 6.60 L250 6.14 L252 5.96 L254 5.92 L256 5.85 L258 6.20 L260 6.19 L262 5.57 L264 5.64 L266 6.29 L268 6.65 L270 6.88 L272 6.96 L274 6.90 L276 7.18 L278 7.44 L280 7.10 L282 6.68 L284 6.77 L286 7.02 L288 6.98 L290 6.92 L292 7.11 L294 7.24 L296 7.27 L298 7.24 L300 7.10 L302 7.17 L304 7.26 L306 6.87 L308 6.49 L310 6.28 L312 5.81 L314 5.60 L316 5.86 L318 5.92 L320 6.03 L322 6.34 L324 6.38 L326 6.27 L328 6.26 L330 6.35 L332 6.79 L334 7.20 L336 6.98 L338 6.55 L340 6.55 L342 6.83 L344 7.08 L346 7.23 L348 7.38 L350 7.42 L352 7.27 L354 7.23 L356 7.56 L358 7.83 L360 7.52 L362 6.94 L364 6.75 L366 6.81 L368 6.65 L370 6.41 L372 6.39 L374 6.67 L376 6.97 L378 6.71 L380 6.19 L382 6.19 L384 6.21 L386 5.95 L388 6.02 L390 6.12 L392 5.94 L394 6.02 L396 6.22 L398 6.06 L400 5.72 L402 5.33 L404 5.05 L406 5.17 L408 5.59 L410 5.99 L412 6.10 L414 6.11 L416 6.32 L418 6.33 L420 5.95 L422 5.94 L424 6.26 L426 6.10 L428 5.66 L430 5.69 L432 5.91 L434 5.71 L436 5.39 L438 5.36 L440 5.47 L442 5.86 L444 6.40 L446 6.20 L448 5.80 L450 6.14 L452 6.21 L454 5.68 L456 5.69 L458 6.09 L460 6.50 L462 6.88 L464 6.62 L466 5.89 L468 5.57 L470 5.67 L472 6.00 L474 6.25 L476 6.15 L478 6.22 L480 6.41 L482 6.37 L484 6.27 L486 5.91 L488 5.60 L490 6.10 L492 6.63 L494 6.49 L496 6.34 L498 6.50 L500 6.91 L502 7.25 L504 7.14 L506 6.93 L508 6.62 L510 6.15 L512 6.12 L514 6.18 L516 6.13 L518 6.61 L520 6.60 L522 5.93 L524 6.36 L526 7.04 L528 6.83 L530 6.98 L532 7.35 L534 7.32 L536 7.43 L538 7.36 L540 7.41 L542 8.21 L544 8.69 L546 8.74 L548 8.87 L550 8.54 L552 8.58 L554 9.38 L556 9.30 L558 8.48 L560 8.08 L562 8.01 L564 8.13 L566 8.01 L568 7.45 L570 7.19 L572 6.90 L574 6.29 L576 6.23 L578 6.39 L580 6.06 L582 5.65 L584 5.67 L586 6.15 L588 6.34 L590 5.86 L592 5.73 L594 5.92 L596 5.80 L598 6.12 L600 6.66 L602 6.70 L604 6.93 L606 7.17 L608 6.95 L610 6.74 L612 6.23 L614 5.84 L616 6.16 L618 5.87 L620 5.37 L622 5.99 L624 6.09 L626 5.56 L628 6.00 L630 6.23 L632 5.93 L634 6.36 L636 6.40 L638 5.80 L640 6.01 L642 6.24 L644 5.76 L646 5.38 L648 5.18 L650 5.41 L652 6.18 L654 6.08 L656 5.11 L658 4.81 L660 4.96 L662 4.49 L664 3.76 L666 3.55 L668 3.87 L670 3.99 L672 3.57 L674 3.64 L676 4.62 L678 5.05 L680 4.76 L682 5.11 L684 5.60 L686 5.20 L688 5.08 L690 5.63 L692 5.69 L694 5.41 L696 5.40 L698 5.61 L700 6.21 L702 6.56 L704 6.03 L706 5.68 L708 5.93 L710 5.90 L712 5.79 L714 6.14 L716 6.60 L718 6.95 L720 7.04 L722 6.62 L724 6.18 L726 6.16 L728 6.28 L730 6.21 L732 6.22 L734 6.46 L736 6.52 L738 6.64 L740 7.17 L742 7.35 L744 7.10 L746 7.26 L748 7.22 L750 6.48 L752 6.17 L754 6.44 L756 6.38 L758 6.16 L760 6.12 L762 6.17 L764 6.32 L766 6.43 L768 6.70 L770 7.24 L772 7.25 L774 6.60 L776 6.23 L778 6.45 L780 6.87 L782 7.01 L784 6.47 L786 5.94 L788 6.30 L790 7.08 L792 7.38 L794 7.10 L796 6.58 L798 6.20 L800 6.23 L802 6.55 L804 6.88 L806 6.90 L808 6.41 L810 5.88 L812 5.96 L814 6.25 L816 6.03 L818 5.82 L820 6.07 L822 6.30 L824 6.36 L826 6.29 L828 5.86 L830 5.79 L832 6.46 L834 6.63 L836 6.24 L838 6.53 L840 7.03 L842 6.88 L844 6.86 L846 7.26 L848 7.19 L850 6.65 L852 6.47 L854 6.44 L856 6.13 L858 6.25 L860 6.93 L862 7.08 L864 6.85 L866 7.20 L868 7.42 L870 7.00 L872 6.51 L874 5.74 L876 4.99 L878 5.51 L880 6.67 L882 7.06 L884 6.82 L886 6.46 L888 6.27 L890 6.38 L892 6.55 L894 6.92 L896 7.32 L898 7.20 L900 7.31 L900 0 Z' fill='black' filter='url(%23s)'/%3E%3C/svg%3E");
+  /* Softened copy of the tear, for the faint shadow it casts */
+  --torn-edge-soft: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='14' viewBox='0 0 900 14'%3E%3Cfilter id='s' x='0' y='-40%25' width='100%25' height='180%25'%3E%3CfeGaussianBlur stdDeviation='1.1'/%3E%3C/filter%3E%3Cpath d='M0 0 L0 7.31 L2 7.81 L4 7.63 L6 7.34 L8 7.48 L10 7.19 L12 6.99 L14 7.42 L16 7.44 L18 7.34 L20 7.49 L22 7.46 L24 8.06 L26 8.74 L28 8.00 L30 7.66 L32 8.55 L34 8.21 L36 7.11 L38 7.20 L40 7.39 L42 7.04 L44 6.92 L46 6.64 L48 6.23 L50 6.37 L52 6.73 L54 6.79 L56 6.58 L58 6.42 L60 6.48 L62 6.37 L64 6.33 L66 6.87 L68 7.17 L70 6.88 L72 6.81 L74 6.76 L76 6.39 L78 6.27 L80 6.18 L82 5.90 L84 6.03 L86 6.34 L88 6.33 L90 6.30 L92 6.14 L94 5.86 L96 6.06 L98 6.55 L100 6.70 L102 6.63 L104 6.32 L106 5.76 L108 5.64 L110 6.25 L112 7.01 L114 7.36 L116 7.15 L118 7.08 L120 7.76 L122 8.29 L124 7.98 L126 7.50 L128 7.15 L130 6.93 L132 7.25 L134 7.69 L136 7.53 L138 7.07 L140 6.79 L142 6.69 L144 6.73 L146 6.76 L148 6.84 L150 7.16 L152 7.49 L154 7.52 L156 7.35 L158 7.52 L160 8.23 L162 8.59 L164 7.99 L166 7.46 L168 7.62 L170 7.41 L172 6.62 L174 6.56 L176 7.06 L178 6.67 L180 6.09 L182 6.55 L184 6.59 L186 5.79 L188 6.17 L190 7.18 L192 7.08 L194 6.91 L196 6.90 L198 6.16 L200 5.78 L202 5.87 L204 5.30 L206 4.97 L208 5.22 L210 5.05 L212 4.91 L214 5.02 L216 5.11 L218 5.79 L220 6.36 L222 5.81 L224 5.32 L226 5.71 L228 6.14 L230 6.32 L232 6.52 L234 6.72 L236 6.76 L238 6.78 L240 6.83 L242 6.57 L244 6.29 L246 6.54 L248 6.60 L250 6.14 L252 5.96 L254 5.92 L256 5.85 L258 6.20 L260 6.19 L262 5.57 L264 5.64 L266 6.29 L268 6.65 L270 6.88 L272 6.96 L274 6.90 L276 7.18 L278 7.44 L280 7.10 L282 6.68 L284 6.77 L286 7.02 L288 6.98 L290 6.92 L292 7.11 L294 7.24 L296 7.27 L298 7.24 L300 7.10 L302 7.17 L304 7.26 L306 6.87 L308 6.49 L310 6.28 L312 5.81 L314 5.60 L316 5.86 L318 5.92 L320 6.03 L322 6.34 L324 6.38 L326 6.27 L328 6.26 L330 6.35 L332 6.79 L334 7.20 L336 6.98 L338 6.55 L340 6.55 L342 6.83 L344 7.08 L346 7.23 L348 7.38 L350 7.42 L352 7.27 L354 7.23 L356 7.56 L358 7.83 L360 7.52 L362 6.94 L364 6.75 L366 6.81 L368 6.65 L370 6.41 L372 6.39 L374 6.67 L376 6.97 L378 6.71 L380 6.19 L382 6.19 L384 6.21 L386 5.95 L388 6.02 L390 6.12 L392 5.94 L394 6.02 L396 6.22 L398 6.06 L400 5.72 L402 5.33 L404 5.05 L406 5.17 L408 5.59 L410 5.99 L412 6.10 L414 6.11 L416 6.32 L418 6.33 L420 5.95 L422 5.94 L424 6.26 L426 6.10 L428 5.66 L430 5.69 L432 5.91 L434 5.71 L436 5.39 L438 5.36 L440 5.47 L442 5.86 L444 6.40 L446 6.20 L448 5.80 L450 6.14 L452 6.21 L454 5.68 L456 5.69 L458 6.09 L460 6.50 L462 6.88 L464 6.62 L466 5.89 L468 5.57 L470 5.67 L472 6.00 L474 6.25 L476 6.15 L478 6.22 L480 6.41 L482 6.37 L484 6.27 L486 5.91 L488 5.60 L490 6.10 L492 6.63 L494 6.49 L496 6.34 L498 6.50 L500 6.91 L502 7.25 L504 7.14 L506 6.93 L508 6.62 L510 6.15 L512 6.12 L514 6.18 L516 6.13 L518 6.61 L520 6.60 L522 5.93 L524 6.36 L526 7.04 L528 6.83 L530 6.98 L532 7.35 L534 7.32 L536 7.43 L538 7.36 L540 7.41 L542 8.21 L544 8.69 L546 8.74 L548 8.87 L550 8.54 L552 8.58 L554 9.38 L556 9.30 L558 8.48 L560 8.08 L562 8.01 L564 8.13 L566 8.01 L568 7.45 L570 7.19 L572 6.90 L574 6.29 L576 6.23 L578 6.39 L580 6.06 L582 5.65 L584 5.67 L586 6.15 L588 6.34 L590 5.86 L592 5.73 L594 5.92 L596 5.80 L598 6.12 L600 6.66 L602 6.70 L604 6.93 L606 7.17 L608 6.95 L610 6.74 L612 6.23 L614 5.84 L616 6.16 L618 5.87 L620 5.37 L622 5.99 L624 6.09 L626 5.56 L628 6.00 L630 6.23 L632 5.93 L634 6.36 L636 6.40 L638 5.80 L640 6.01 L642 6.24 L644 5.76 L646 5.38 L648 5.18 L650 5.41 L652 6.18 L654 6.08 L656 5.11 L658 4.81 L660 4.96 L662 4.49 L664 3.76 L666 3.55 L668 3.87 L670 3.99 L672 3.57 L674 3.64 L676 4.62 L678 5.05 L680 4.76 L682 5.11 L684 5.60 L686 5.20 L688 5.08 L690 5.63 L692 5.69 L694 5.41 L696 5.40 L698 5.61 L700 6.21 L702 6.56 L704 6.03 L706 5.68 L708 5.93 L710 5.90 L712 5.79 L714 6.14 L716 6.60 L718 6.95 L720 7.04 L722 6.62 L724 6.18 L726 6.16 L728 6.28 L730 6.21 L732 6.22 L734 6.46 L736 6.52 L738 6.64 L740 7.17 L742 7.35 L744 7.10 L746 7.26 L748 7.22 L750 6.48 L752 6.17 L754 6.44 L756 6.38 L758 6.16 L760 6.12 L762 6.17 L764 6.32 L766 6.43 L768 6.70 L770 7.24 L772 7.25 L774 6.60 L776 6.23 L778 6.45 L780 6.87 L782 7.01 L784 6.47 L786 5.94 L788 6.30 L790 7.08 L792 7.38 L794 7.10 L796 6.58 L798 6.20 L800 6.23 L802 6.55 L804 6.88 L806 6.90 L808 6.41 L810 5.88 L812 5.96 L814 6.25 L816 6.03 L818 5.82 L820 6.07 L822 6.30 L824 6.36 L826 6.29 L828 5.86 L830 5.79 L832 6.46 L834 6.63 L836 6.24 L838 6.53 L840 7.03 L842 6.88 L844 6.86 L846 7.26 L848 7.19 L850 6.65 L852 6.47 L854 6.44 L856 6.13 L858 6.25 L860 6.93 L862 7.08 L864 6.85 L866 7.20 L868 7.42 L870 7.00 L872 6.51 L874 5.74 L876 4.99 L878 5.51 L880 6.67 L882 7.06 L884 6.82 L886 6.46 L888 6.27 L890 6.38 L892 6.55 L894 6.92 L896 7.32 L898 7.20 L900 7.31 L900 0 Z' fill='black' filter='url(%23s)'/%3E%3C/svg%3E");
 }
 
 .top-header {
@@ -32,24 +37,71 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 16px 32px;
+  padding-top: 16px;
+  padding-bottom: 22px;
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 1001;
-  transition: all 0.2s ease;
 }
 
-/* Transparent header for hero page */
-.top-header.transparent {
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0);
+/* ---------- Washi paper sheet with a torn bottom edge ----------
+   ::before is the translucent paper, clipped to the tear;
+   ::after is the faint shadow the tear casts on the page below. */
+.top-header::before,
+.top-header::after,
+.menu-panel::before,
+.menu-panel::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.top-header::before,
+.menu-panel::before {
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  background: var(--washi);
+  background-attachment: fixed;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(9px);
+  -webkit-mask-image: linear-gradient(#000, #000), var(--torn-edge);
+  mask-image: linear-gradient(#000, #000), var(--torn-edge);
+  -webkit-mask-size: 100% calc(100% - 12px), 900px 14px;
+  mask-size: 100% calc(100% - 12px), 900px 14px;
+  -webkit-mask-position: top left, bottom left;
+  mask-position: top left, bottom left;
+  -webkit-mask-repeat: no-repeat, repeat-x;
+  mask-repeat: no-repeat, repeat-x;
+}
+
+/* Shadow band: the softened tear shifted down, minus the paper itself */
+.top-header::after,
+.menu-panel::after {
+  bottom: -2px;
+  height: 14px;
+  z-index: -2;
+  background: rgba(0, 0, 0, 0.08);
+  -webkit-mask-image: var(--torn-edge-soft), var(--torn-edge);
+  mask-image: var(--torn-edge-soft), var(--torn-edge);
+  -webkit-mask-size: 900px 14px, 900px 14px;
+  mask-size: 900px 14px, 900px 14px;
+  -webkit-mask-position: 0 0, 0 -2px;
+  mask-position: 0 0, 0 -2px;
+  -webkit-mask-repeat: repeat-x, repeat-x;
+  mask-repeat: repeat-x, repeat-x;
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+}
+
+/* Transparent header over the hero: the paper fades in once scrolled */
+.top-header.transparent::before,
+.top-header.transparent::after {
+  opacity: 0;
 }
 
 .header-title {
@@ -74,24 +126,26 @@
 }
 
 .hero-content-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  max-width: 980px;
-  width: 100%;
+  align-items: center;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 80px 40px 120px;
+  padding: 128px 0 72px;
 }
 
 .hero-label {
   font-family: "Barlow", sans-serif;
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 500;
   color: #6e6e73;
-  margin-bottom: 12px;
-  letter-spacing: 0.3px;
+  margin-bottom: 16px;
+  letter-spacing: 0.01em;
+}
+
+.hero-label,
+.hero-title {
+  text-align: center;
 }
 
 .hero-title {
@@ -104,386 +158,267 @@
   letter-spacing: -0.02em;
 }
 
-.hero-caption {
-  font-family: "Barlow", sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  color: #6e6e73;
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.info-icon-wrapper {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.info-icon {
-  color: #6e6e73;
-  transition: color 0.2s ease;
-}
-
-.info-icon-wrapper:hover .info-icon {
-  color: #1d1d1f;
-}
-
-.info-tooltip {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-8px) scale(0.92);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-              visibility 0.3s;
-  pointer-events: none;
-  z-index: 1000;
-  transform-origin: top center;
-}
-
-.info-icon-wrapper:hover .info-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0) scale(1);
-}
-
-.tooltip-content {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.85) 0%,
-    rgba(248, 250, 252, 0.95) 100%
-  );
-  /* backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px); */
-  border-radius: 12px;
-  border: 1px solid rgba(147, 197, 253, 0.3);
-  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    inset 0 0 20px rgba(147, 197, 253, 0.1);
-  padding: 12px 16px;
-  min-width: 240px;
-  white-space: nowrap;
-}
-
-.tooltip-session {
-  font-family: "Barlow", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #1d1d1f;
-  line-height: 1.6;
-}
-
-.tooltip-session:first-child {
-  margin-bottom: 4px;
-}
-
 .hero-text {
   font-family: "Barlow", sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.65;
   color: #1d1d1f;
-  margin-bottom: 48px;
+  margin: 0;
+}
+
+.hero-teaser,
+.hero-text {
+  width: 100%;
+  max-width: 720px;
   text-align: left;
 }
 
-.hero-cta-button {
+.hero-teaser {
   font-family: "Barlow", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 12px 32px;
-  background: #3a3a3c;
-  color: #ffffff;
-  border: none;
-  border-radius: 24px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.hero-cta-button:hover {
-  background: #1d1d1f;
-  transform: scale(1.02);
-}
-
-.hero-cta-button a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.hero-secondary-link {
-  font-family: "Barlow", sans-serif;
-  font-size: 15px;
+  font-size: 1.35rem;
   font-weight: 500;
-  color: #6e6e73;
-  text-decoration: none;
-  margin-top: 16px;
-  transition: color 0.2s ease;
-}
-
-.hero-secondary-link:hover {
+  line-height: 1.5;
+  letter-spacing: -0.01em;
   color: #1d1d1f;
+  margin: 0 0 1rem;
 }
 
-/* Split Screen Section - single scrollable page */
-.split-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* One page: sticky navigation on the left, content on the right */
+.page-layout {
   position: relative;
-  scroll-snap-align: start;
-}
-
-.split-container {
-  flex: 1;
   display: flex;
-  max-width: 1650px;
-  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 80px 40px 120px;
 }
 
-.split-left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+/* Thin splitter between the hero and the content */
+.page-layout::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.page-nav {
   position: sticky;
-  top: 80px;
-  height: fit-content;
+  top: 112px;
+  align-self: flex-start;
+  flex: 0 0 280px;
+  max-height: calc(100vh - 112px);
+  margin-top: 40px;
+  padding: 0 64px 32px 0;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
-.split-right {
-  flex: 3;
-  padding-left: 40px;
-  border-left: 1px solid #e5e5e7;
+.page-nav::-webkit-scrollbar {
+  display: none;
 }
 
-/* Bottom Navigation Bar */
-
-.bottom-nav-bar {
-  position: fixed;
-  bottom: 12px;
-  left: 50%;
-  padding: 8px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(248, 250, 252, 0.5) 100%
-  );
-  backdrop-filter: blur(10px);
-  height: 50px;
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 24px;
-  border: 1px solid rgba(147, 197, 253, 0.2);
-  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    inset 0 0 20px rgba(147, 197, 253, 0.1);
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  pointer-events: auto;
-  min-width: 50px;
+.page-main {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: 96px;
 }
 
-.bottom-nav-bar.indicator {
-  /* background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(240, 248, 255, 0.95) 100%
-  ); */
-  box-shadow: 0 4px 12px rgba(39, 108, 219, 0.06), 0 2px 4px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.466);
-  /* border: 1px solid rgba(147, 196, 253, 0.388); */
-  .scroll-text {
-    position: absolute;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: "Barlow", sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    color: #6e6e7376;
-    text-align: center;
-    width: 200px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-wrap: nowrap;
-  }
+.content-section {
+  padding-top: 48px;
 }
 
-.down-arrow-icon {
-  animation: bounce 1.35s infinite;
-}
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(5px);
-  }
-  30% {
-    transform: translateY(3px);
-  }
-}
-
-.nav-tab {
-  font-family: "Barlow", sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 10px 20px;
-  background: transparent;
-  color: #6e6e73;
-  border: 1px solid rgba(147, 197, 253, 0);
-  border-radius: 18px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  white-space: nowrap;
+/* Thin splitter between sections, aligned with the section text */
+.content-section + .content-section {
   position: relative;
+  margin-top: 16px;
 }
 
-.nav-tab:hover {
-  color: #1d1d1f;
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+.content-section + .content-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
 }
 
-.nav-tab.active {
-  color: #1d1d1f;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(240, 248, 255, 0.95) 100%
-  );
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15), 0 2px 4px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(147, 197, 253, 0.3);
-  font-weight: 600;
+/* Inked texture on hero, header, and navigation text (filter defined in App.js) */
+.header-title,
+.header-subtitle,
+.hero-label,
+.hero-title,
+.hero-teaser,
+.hero-text,
+.side-nav-section,
+.side-nav-sub {
+  filter: url(#ink-texture);
 }
 
-/* Responsive Design */
+/* ---------- Hamburger menu (small screens) ---------- */
+.menu-button {
+  all: unset;
+  position: relative;
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  margin-right: -8px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.menu-button span {
+  position: absolute;
+  left: 9px;
+  right: 9px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: #1d1d1f;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menu-button span:first-child {
+  transform: translateY(-3.5px);
+  top: 50%;
+}
+
+.menu-button span:last-child {
+  transform: translateY(3.5px);
+  top: 50%;
+}
+
+.menu-button.open span:first-child {
+  transform: rotate(45deg);
+}
+
+.menu-button.open span:last-child {
+  transform: rotate(-45deg);
+}
+
+.menu-button:focus-visible {
+  outline: 2px solid #1d1d1f;
+  outline-offset: 2px;
+}
+
+/* While the menu is open the header shares the page background too */
+/* While the menu is open, header and menu form one denser sheet;
+   the tear moves to the bottom of the menu */
+.top-header.menu-open::before,
+.menu-panel::before {
+  background: var(--washi-dense);
+  background-attachment: fixed;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.top-header.menu-open::before {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.top-header.menu-open::after {
+  opacity: 0;
+}
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+}
+
+.menu-panel {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.menu-scroll {
+  max-height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+  padding: 16px var(--page-gutter) 36px;
+}
+
+/* ---------- Responsive layout ---------- */
+:root {
+  --page-gutter: 32px;
+  --header-height: 63px;
+}
+
+.top-header,
+.page-layout,
+.hero-page {
+  padding-left: var(--page-gutter);
+  padding-right: var(--page-gutter);
+}
+
+.page-layout::before {
+  left: var(--page-gutter);
+  right: var(--page-gutter);
+}
+
+/* Laptop: slimmer sidebar */
+@media (max-width: 1279px) {
+  .page-nav {
+    flex-basis: 240px;
+    padding-right: 48px;
+  }
+}
+
+/* Tablet and below: no sidebar, centered reading column, hamburger menu */
 @media (max-width: 1024px) {
-  .split-container {
-    flex-direction: column;
-    padding: 60px 32px 100px;
+  :root {
+    --page-gutter: 32px;
   }
 
-  .split-left,
-  .split-right {
-    flex: none;
-    height: auto;
-    padding: 0;
-  }
-
-  .split-left {
-    padding-bottom: 32px;
-    margin-bottom: 32px;
-    border-bottom: 1px solid #e5e5e7;
-  }
-
-  .split-right {
-    border-left: none;
-    padding-left: 0;
-  }
-}
-
-@media (max-width: 1024px) {
-  /* Hide left navigation on mobile for long scrolling page */
-  .split-left {
-    display: none;
-  }
-
-  .split-right {
-    border-left: none;
-    padding-left: 0;
-  }
-
-  .hero-title {
-    font-size: 32px;
-  }
-
-  .hero-label {
-    font-size: 18px;
-  }
-
-  .hero-caption {
-    font-size: 16px;
-    flex-wrap: wrap;
-  }
-
-  .tooltip-content {
-    min-width: 200px;
-    font-size: 13px;
-  }
-
-  .tooltip-session {
-    font-size: 12px;
-  }
-
+  .hero-teaser,
   .hero-text {
-    font-size: 15px;
-    line-height: 1.5;
+    max-width: 760px;
+  }
+
+  .page-layout {
+    display: block;
+  }
+
+  .page-main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding-bottom: 64px;
   }
 
   .hero-content-wrapper {
-    padding: 60px 24px 80px;
+    padding: 112px 0 56px;
   }
 
-  .split-container {
-    padding: 40px 24px 60px;
-  }
-
-  .bottom-nav-bar {
-    padding: 6px;
-    gap: 4px;
-    bottom: 12px;
-    max-width: calc(100vw - 32px);
-  }
-
-  .nav-tab {
-    font-size: 10px;
-    padding: 8px 12px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-cta-button {
-    display: none;
-  }
-  .hero-secondary-link {
-    margin-top: 0;
-  }
-  .hero-text {
-    margin-bottom: 12px;
-  }
-}
-
-/* Extra small screens */
-@media (max-width: 480px) {
   .hero-title {
-    font-size: 28px;
+    font-size: 36px;
   }
 
-  .hero-content-wrapper {
-    padding: 50px 20px 60px;
+  .content-section {
+    padding-top: 40px;
   }
 
-  .split-container {
-    padding: 32px 20px 50px;
+  .content-section + .content-section {
+    margin-top: 8px;
+  }
+
+  .content-section + .content-section::before {
+    left: 0;
+    right: 0;
+  }
+}
+
+/* Phone */
+@media (max-width: 600px) {
+  :root {
+    --page-gutter: 20px;
+    --header-height: 55px;
   }
 
   .top-header {
-    padding: 12px 20px;
+    padding-top: 12px;
+    padding-bottom: 18px;
   }
 
   .header-title,
@@ -491,13 +426,42 @@
     font-size: 13px;
   }
 
-  .bottom-nav-bar {
-    bottom: 8px;
-    max-width: calc(100vw - 24px);
+  .hero-content-wrapper {
+    padding: 88px 0 40px;
   }
 
-  .nav-tab {
-    font-size: 9px;
-    padding: 8px 10px;
+  .hero-label {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .hero-teaser {
+    font-size: 19px;
+  }
+
+  .hero-text {
+    font-size: 16px;
+  }
+
+  .content-section {
+    padding-top: 32px;
+  }
+}
+
+/* Very narrow phones: drop the header subtitle */
+@media (max-width: 380px) {
+  :root {
+    --page-gutter: 16px;
+  }
+
+  .header-divider,
+  .header-subtitle {
+    display: none;
   }
 }

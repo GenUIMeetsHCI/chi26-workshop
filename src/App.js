@@ -1,303 +1,267 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import ContentNavigation from "./components/ContentNavigation";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { MotionConfig, AnimatePresence, motion } from "framer-motion";
+import SideNav from "./components/SideNav";
 import DetailContent from "./components/DetailContent";
-import { getAssetPath } from "./config";
+import { sectionData } from "./data/sectionData";
 import "./styles/App.css";
-import { ChevronDown, Info } from "lucide-react";
+
+// Page sections in scroll order
+const SECTIONS = [
+  { id: "report", label: "Report" },
+  { id: "submissions", label: "Proposals" },
+  { id: "organizers", label: "Organizers" },
+  { id: "archive", label: "Archive" },
+];
+
+const NAV_ITEMS = SECTIONS.map(({ id, label }) => ({
+  id,
+  label,
+  subs: sectionData[id].sidebar.sections.map((s) => s.heading),
+}));
+
+// Space kept above a scroll target, below the fixed header
+const headerOffset = (compact) => (compact ? 64 : 72);
+const SPY_LINE = 0.3; // a section becomes active once its top passes 30% of the viewport
+
+const useMediaQuery = (query) => {
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
+  useEffect(() => {
+    const mql = window.matchMedia(query);
+    const onChange = () => setMatches(mql.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, [query]);
+  return matches;
+};
 
 function App() {
-  const [activeCfpSubsection, setActiveCfpSubsection] = useState(0);
-  const [activeSubmissionsSubsection, setActiveSubmissionsSubsection] =
-    useState(0);
-  const [activeProgramSubsection, setActiveProgramSubsection] = useState(0);
-  const [activeOrganizersSubsection, setActiveOrganizersSubsection] =
-    useState(0);
-  const [showNav, setShowNav] = useState(false);
-  const [activeSection, setActiveSection] = useState("cfp");
+  const [active, setActive] = useState({ section: null, sub: null });
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const compact = useMediaQuery("(max-width: 1024px)");
   const containerRef = useRef(null);
-  const heroRef = useRef(null);
-  const cfpRef = useRef(null);
-  const submissionsRef = useRef(null);
-  const programRef = useRef(null);
-  const organizersRef = useRef(null);
+  const sectionRefs = useRef({});
+  // While a click-triggered smooth scroll runs, scroll spying is paused so the
+  // nav doesn't flicker through every section on the way to the target.
+  const lockRef = useRef(false);
+  const unlockTimer = useRef(null);
 
-  const handleSectionClick = (section) => {
-    // Scroll to the appropriate section
-    const refs = {
-      home: heroRef,
-      cfp: cfpRef,
-      submissions: submissionsRef,
-      program: programRef,
-      organizers: organizersRef,
-    };
+  const elementFor = (section, sub) =>
+    sub === null
+      ? sectionRefs.current[section]
+      : document.getElementById(`${section}-${sub}`);
 
-    refs[section]?.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+  const spy = useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const containerTop = container.getBoundingClientRect().top;
+    const line = container.clientHeight * SPY_LINE;
+    const topOf = (el) => el.getBoundingClientRect().top - containerTop;
+    const atBottom =
+      container.scrollTop + container.clientHeight >= container.scrollHeight - 2;
+
+    let next = { section: null, sub: null };
+    NAV_ITEMS.forEach((item) => {
+      const el = elementFor(item.id, null);
+      if (!el || topOf(el) > line) return;
+      next = { section: item.id, sub: null };
+      item.subs.forEach((_, idx) => {
+        const subEl = elementFor(item.id, idx);
+        if (subEl && topOf(subEl) <= line) next.sub = idx;
+      });
     });
-  };
-
-  // Reset scroll position to top on mount (page load/refresh)
-  useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = 0;
+    if (atBottom) {
+      const last = NAV_ITEMS[NAV_ITEMS.length - 1];
+      next = { section: last.id, sub: Math.max(last.subs.length - 1, 0) };
     }
-    // Prevent browser scroll restoration
+
+    setActive((prev) =>
+      prev.section === next.section && prev.sub === next.sub ? prev : next
+    );
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    let frame = null;
+    const onScroll = () => {
+      setScrolled(container.scrollTop > 24);
+      if (lockRef.current) {
+        // Release the lock shortly after the smooth scroll settles
+        clearTimeout(unlockTimer.current);
+        unlockTimer.current = setTimeout(() => {
+          lockRef.current = false;
+          spy();
+        }, 140);
+        return;
+      }
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        spy();
+      });
+    };
+    container.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      container.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+      clearTimeout(unlockTimer.current);
+    };
+  }, [spy]);
+
+  useEffect(() => {
+    if (!compact) setMenuOpen(false);
+  }, [compact]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e) => e.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  // Prevent browser scroll restoration so the page always opens at the top
+  useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (containerRef.current) {
-        const scrollPosition = containerRef.current.scrollTop;
-        const viewportHeight = window.innerHeight;
-        setShowNav(scrollPosition > viewportHeight * 0.5);
-
-        // Determine which section is currently in view
-        const heroTop = heroRef.current?.offsetTop || 0;
-        const cfpTop = cfpRef.current?.offsetTop || 0;
-        const submissionsTop = submissionsRef.current?.offsetTop || 0;
-        const programTop = programRef.current?.offsetTop || 0;
-        const organizersTop = organizersRef.current?.offsetTop || 0;
-
-        const scrollWithOffset = scrollPosition + viewportHeight / 2;
-
-        if (scrollWithOffset < cfpTop) {
-          setActiveSection("home");
-        } else if (scrollWithOffset < submissionsTop) {
-          setActiveSection("cfp");
-        } else if (scrollWithOffset < programTop) {
-          setActiveSection("submissions");
-        } else if (scrollWithOffset < organizersTop) {
-          setActiveSection("program");
-        } else {
-          setActiveSection("organizers");
-        }
-      }
-    };
-
+  const navigate = (section, sub) => {
     const container = containerRef.current;
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-      return () => container.removeEventListener("scroll", handleScroll);
-    }
-  }, []);
+    const el = elementFor(section, sub);
+    const top = el
+      ? el.getBoundingClientRect().top -
+        container.getBoundingClientRect().top +
+        container.scrollTop -
+        headerOffset(compact)
+      : 0;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    setActive({ section, sub });
+    setMenuOpen(false);
+    lockRef.current = true;
+    // In case the page is already in place and no scroll event fires
+    clearTimeout(unlockTimer.current);
+    unlockTimer.current = setTimeout(() => (lockRef.current = false), 600);
+    container.scrollTo({ top: Math.max(top, 0), behavior: reduceMotion ? "auto" : "smooth" });
+  };
 
   return (
-    <div
-      className={`app-container ${
-        activeSection === "home" ? "hero-page-container" : ""
-      }`}
-      ref={containerRef}
-    >
-      {/* Global Fixed Header */}
-      <header className={`top-header ${!showNav ? "transparent" : ""}`}>
-        <span className="header-title">CHI2026 Workshop</span>
-        <span className="header-divider"></span>
-        <span className="header-subtitle">Generative UI for HCI Practice</span>
-      </header>
+    <MotionConfig reducedMotion="user">
+      <div className="app-container" ref={containerRef}>
+        {/* Ink texture for the report text: slightly rough edges, a faint
+            bleed, and uneven ink density, so it reads like printed type */}
+        <svg className="svg-defs" aria-hidden="true" focusable="false">
+          <filter id="ink-texture" x="-2%" y="-10%" width="104%" height="120%">
+            {/* Fine paper grain: roughens edges and speckles the strokes */}
+            <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="grain" />
+            {/* Broad, soft patches where the ink ran thinner */}
+            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="3" result="patches" />
+            <feDisplacementMap in="SourceGraphic" in2="grain" scale="1.0" xChannelSelector="R" yChannelSelector="G" result="rough" />
+            <feGaussianBlur in="rough" stdDeviation="0.24" result="bleed" />
+            <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.75 1.35" result="speckle" />
+            <feColorMatrix in="patches" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.85 1.4" result="unevenness" />
+            <feComposite in="bleed" in2="speckle" operator="in" result="speckled" />
+            <feComposite in="speckled" in2="unevenness" operator="in" />
+          </filter>
+        </svg>
+        <header
+          className={`top-header ${scrolled || menuOpen ? "" : "transparent"} ${menuOpen ? "menu-open" : ""}`}
+        >
+          <span className="header-title">CHI2026 Workshop</span>
+          <span className="header-divider"></span>
+          <span className="header-subtitle">Generative UI for HCI Practice</span>
+          {compact && (
+            <button
+              className={`menu-button ${menuOpen ? "open" : ""}`}
+              onClick={() => setMenuOpen((o) => !o)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+            >
+              <span />
+              <span />
+            </button>
+          )}
+        </header>
 
-      {/* Hero Section */}
-      <section className="hero-page" ref={heroRef}>
-        <div className="hero-content-wrapper">
-          <h2 className="hero-label">CHI2026 Workshop</h2>
-          <h1 className="hero-title">
-            What does Generative UI mean for HCI Practice?
-          </h1>
-          <p className="hero-caption">
-            Creant el demà junts • Barcelona, Wednesday, 15 April 2026
-            <span className="info-icon-wrapper">
-              <Info className="info-icon" size={18} />
-              <span className="info-tooltip">
-                <div className="tooltip-content">
-                  <div className="tooltip-session">Session 1: 14:15 - 15:45 CEST</div>
-                  <div className="tooltip-session">Session 2: 16:30 - 18:00 CEST</div>
+        {/* Small screens: navigation drops down from the header */}
+        <AnimatePresence>
+          {compact && menuOpen && (
+            <>
+              <motion.div
+                key="menu-backdrop"
+                className="menu-backdrop"
+                onClick={() => setMenuOpen(false)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+              />
+              <motion.div
+                key="menu-panel"
+                id="mobile-menu"
+                className="menu-panel"
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="menu-scroll">
+                  <SideNav items={NAV_ITEMS} active={active} onNavigate={navigate} />
                 </div>
-              </span>
-            </span>
-          </p>
-          <p className="hero-text">
-            The increasing capability of AI models to generate user interfaces
-            has the potential to transform HCI and design practice. We invite
-            researchers, designers, and practitioners to explore how generative
-            UI—interfaces created by AI models—will reshape design methods,
-            workflows, and user experiences.
-            <br />
-            <br />
-            This will be an interactive and discussion-oriented workshop,
-            featuring a pop-up panel, creative ideation exercises, and
-            collaborative artefact development. The workshop brings together
-            scholars and practitioners working on dynamic or generative UI, as
-            well as those with expertise in related areas, to join the
-            conversation.
-          </p>
-          {/* <button className="hero-cta-button">Submission Form</button> */}
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
 
-          {/* <div className="hero-cta-button">
-            <a
-              href="https://forms.office.com/r/F84grr6bV1"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Submission Form
-            </a>
-          </div> */}
-          <a
-            className="hero-secondary-link"
-            href={getAssetPath("genUI-chi26-workshop.pdf")}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Read our Workshop Proposal →
-          </a>
+        {/* Hero: centered title, teaser, and overview */}
+        <section className="hero-page">
+          <div className="hero-content-wrapper">
+            <p className="hero-label">
+              CHI 2026 Workshop · Barcelona · Wednesday, 15 April 2026
+            </p>
+            <h1 className="hero-title">
+              What does Generative UI mean for HCI Practice?
+            </h1>
+            <p className="hero-teaser">
+              When interfaces can be generated at run time, the interface is no
+              longer a finished artefact but a space of possibilities. What
+              does that change about how HCI designs, builds, and evaluates?
+            </p>
+            <p className="hero-text">
+              This CHI 2026 workshop brought together researchers, designers,
+              and practitioners from industry and academia. Across two
+              90-minute sessions—a human spectrogram, a pop-up panel, rapid
+              sketching, and small-group artefact making—participants explored
+              how generative UI can underpin human-centred experiences, and how
+              HCI and design practice should evolve in response.
+            </p>
+          </div>
+        </section>
+
+        <div className="page-layout">
+          {!compact && (
+            <aside className="page-nav">
+              <SideNav items={NAV_ITEMS} active={active} onNavigate={navigate} />
+            </aside>
+          )}
+
+          <main className="page-main">
+            {SECTIONS.map(({ id }) => (
+              <section
+                key={id}
+                id={id}
+                className="content-section"
+                ref={(el) => (sectionRefs.current[id] = el)}
+              >
+                <DetailContent section={id} />
+              </section>
+            ))}
+          </main>
         </div>
-      </section>
-
-      {/* Call for Participation Section */}
-      <section className="split-page" ref={cfpRef}>
-        <div className="split-container">
-          <div className="split-left">
-            <ContentNavigation
-              activeSection="cfp"
-              activeSubsection={activeCfpSubsection}
-              onSubsectionClick={setActiveCfpSubsection}
-            />
-          </div>
-          <div className="split-right">
-            <DetailContent
-              section="cfp"
-              activeSubsection={activeCfpSubsection}
-              scrollContainerRef={containerRef}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Accepted Proposals Section */}
-      <section className="split-page" ref={submissionsRef}>
-        <div className="split-container">
-          <div className="split-left">
-            <ContentNavigation
-              activeSection="submissions"
-              activeSubsection={activeSubmissionsSubsection}
-              onSubsectionClick={setActiveSubmissionsSubsection}
-            />
-          </div>
-          <div className="split-right">
-            <DetailContent
-              section="submissions"
-              activeSubsection={activeSubmissionsSubsection}
-              scrollContainerRef={containerRef}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Program Section */}
-      <section className="split-page" ref={programRef}>
-        <div className="split-container">
-          <div className="split-left">
-            <ContentNavigation
-              activeSection="program"
-              activeSubsection={activeProgramSubsection}
-              onSubsectionClick={setActiveProgramSubsection}
-            />
-          </div>
-          <div className="split-right">
-            <DetailContent
-              section="program"
-              activeSubsection={activeProgramSubsection}
-              scrollContainerRef={containerRef}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Organizers Section */}
-      <section className="split-page" ref={organizersRef}>
-        <div className="split-container">
-          <div className="split-left">
-            <ContentNavigation
-              activeSection="organizers"
-              activeSubsection={activeOrganizersSubsection}
-              onSubsectionClick={setActiveOrganizersSubsection}
-            />
-          </div>
-          <div className="split-right">
-            <DetailContent
-              section="organizers"
-              activeSubsection={activeOrganizersSubsection}
-              scrollContainerRef={containerRef}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Animated Bottom Navigation */}
-      <motion.nav
-        className={`bottom-nav-bar ${showNav ? "" : "indicator"}`}
-        initial={{
-          scale: 0.8,
-          opacity: 1,
-          x: "-50%",
-        }}
-        animate={{
-          scale: showNav ? 1.2 : 0.8,
-          opacity: showNav ? 1.2 : 0.8,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 260,
-          damping: 20,
-        }}
-      >
-        {showNav && (
-          <>
-            <div
-              className={`nav-tab ${activeSection === "home" ? "active" : ""}`}
-              onClick={() => handleSectionClick("home")}
-            >
-              Home
-            </div>
-            <div
-              className={`nav-tab ${activeSection === "cfp" ? "active" : ""}`}
-              onClick={() => handleSectionClick("cfp")}
-            >
-              Call for Participation
-            </div>
-            <div
-              className={`nav-tab ${
-                activeSection === "submissions" ? "active" : ""
-              }`}
-              onClick={() => handleSectionClick("submissions")}
-            >
-              Accepted Proposals
-            </div>
-            <div
-              className={`nav-tab ${
-                activeSection === "program" ? "active" : ""
-              }`}
-              onClick={() => handleSectionClick("program")}
-            >
-              Program
-            </div>
-            <div
-              className={`nav-tab ${
-                activeSection === "organizers" ? "active" : ""
-              }`}
-              onClick={() => handleSectionClick("organizers")}
-            >
-              Organizers
-            </div>
-          </>
-        )}
-        {!showNav && <ChevronDown className="down-arrow-icon" size={24} />}
-        {!showNav && <span className="scroll-text">scroll to learn more</span>}
-      </motion.nav>
-    </div>
+      </div>
+    </MotionConfig>
   );
 }
 

@@ -19,7 +19,7 @@ The site will open at `http://localhost:3000`
 
 ### Content Editing
 
-section content are specified with JSON in `data/sectionData.js`
+section content are specified with JSON in `data/sectionData.js`; the workshop report text is in `data/report.js`
 
 ### Deployment
 
