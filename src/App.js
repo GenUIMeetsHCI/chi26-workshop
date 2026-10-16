@@ -164,6 +164,15 @@ function App() {
             <feComposite in="bleed" in2="speckle" operator="in" result="speckled" />
             <feComposite in="speckled" in2="unevenness" operator="in" />
           </filter>
+          {/* Lighter ink for photos: grain and uneven density, no edge distortion */}
+          <filter id="ink-photo">
+            <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="grain" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="3" result="patches" />
+            <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.45 1.2" result="speckle" />
+            <feColorMatrix in="patches" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.5 1.25" result="unevenness" />
+            <feComposite in="SourceGraphic" in2="speckle" operator="in" result="speckled" />
+            <feComposite in="speckled" in2="unevenness" operator="in" />
+          </filter>
         </svg>
         <header
           className={`top-header ${scrolled || menuOpen ? "" : "transparent"} ${menuOpen ? "menu-open" : ""}`}
