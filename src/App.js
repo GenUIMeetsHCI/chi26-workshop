@@ -149,31 +149,6 @@ function App() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="app-container" ref={containerRef}>
-        {/* Ink texture for the report text: slightly rough edges, a faint
-            bleed, and uneven ink density, so it reads like printed type */}
-        <svg className="svg-defs" aria-hidden="true" focusable="false">
-          <filter id="ink-texture" x="-2%" y="-10%" width="104%" height="120%">
-            {/* Fine paper grain: roughens edges and speckles the strokes */}
-            <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="grain" />
-            {/* Broad, soft patches where the ink ran thinner */}
-            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="3" result="patches" />
-            <feDisplacementMap in="SourceGraphic" in2="grain" scale="1.0" xChannelSelector="R" yChannelSelector="G" result="rough" />
-            <feGaussianBlur in="rough" stdDeviation="0.24" result="bleed" />
-            <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.75 1.35" result="speckle" />
-            <feColorMatrix in="patches" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.85 1.4" result="unevenness" />
-            <feComposite in="bleed" in2="speckle" operator="in" result="speckled" />
-            <feComposite in="speckled" in2="unevenness" operator="in" />
-          </filter>
-          {/* Lighter ink for photos: grain and uneven density, no edge distortion */}
-          <filter id="ink-photo">
-            <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="grain" />
-            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="3" result="patches" />
-            <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.45 1.2" result="speckle" />
-            <feColorMatrix in="patches" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.5 1.25" result="unevenness" />
-            <feComposite in="SourceGraphic" in2="speckle" operator="in" result="speckled" />
-            <feComposite in="speckled" in2="unevenness" operator="in" />
-          </filter>
-        </svg>
         <header
           className={`top-header ${scrolled || menuOpen ? "" : "transparent"} ${menuOpen ? "menu-open" : ""}`}
         >

@@ -6,13 +6,6 @@
   padding: 0;
 }
 
-.svg-defs {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
-
 .app-container {
   width: 100%;
   height: 100vh;
@@ -243,7 +236,7 @@
   background: rgba(0, 0, 0, 0.08);
 }
 
-/* Inked texture on hero, header, and navigation text (filter defined in App.js) */
+/* Inked texture on hero, header, and navigation text (mask defined in global.css) */
 .header-title,
 .header-subtitle,
 .hero-label,
@@ -252,7 +245,10 @@
 .hero-text,
 .side-nav-section,
 .side-nav-sub {
-  filter: url(#ink-texture);
+  -webkit-mask-image: var(--ink-mask);
+  mask-image: var(--ink-mask);
+  -webkit-mask-size: 320px 320px;
+  mask-size: 320px 320px;
 }
 
 /* ---------- Hamburger menu (small screens) ---------- */

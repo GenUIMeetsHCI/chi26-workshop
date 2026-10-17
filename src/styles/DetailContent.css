@@ -475,7 +475,10 @@
   height: calc(100% - 10px);
   object-fit: cover;
   border-radius: 50%;
-  filter: url(#ink-photo);
+  -webkit-mask-image: var(--ink-mask-photo);
+  mask-image: var(--ink-mask-photo);
+  -webkit-mask-size: 320px 320px;
+  mask-size: 320px 320px;
 }
 
 .organizer-row:nth-child(3n + 1) .organizer-image {
@@ -565,7 +568,7 @@
   margin-bottom: 1.25rem;
 }
 
-/* Inked texture on all text except the archive (filter defined in App.js) */
+/* Inked texture on all text except the archive (mask defined in global.css) */
 .content-section:not(#archive) :is(
     .detail-section-title,
     .detail-h1,
@@ -580,7 +583,10 @@
     .research-focus-text,
     .organizer-link
   ) {
-  filter: url(#ink-texture);
+  -webkit-mask-image: var(--ink-mask);
+  mask-image: var(--ink-mask);
+  -webkit-mask-size: 320px 320px;
+  mask-size: 320px 320px;
 }
 
 .section-report .detail-text,
